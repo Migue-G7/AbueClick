@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos - AbueClick</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/styleservicio.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header id="navbar">
+      <div class="nav-left">
+        <div class="brand">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+        </div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="#footer">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="nav-right">
+        <form class="search-form" role="search" onsubmit="return false;">
+          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+        </form>
+        <a href="notificaciones.html" class="notifications-btn" aria-label="Notificaciones" title="Notificaciones" id="notificationsLink">
+          <span class="notification-icon">🔔</span>
+          <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+        </a>
+        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
+          <span class="avatar-circle" id="userAvatar">AC</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="servicio-main">
+      <div class="servicio-container">
+        <!-- Descripción del Servicio -->
+        <section class="servicio-descripcion">
+          <div class="servicio-header">
+            <img src="resources/icons/calendario.png" alt="Eventos" class="servicio-icon-large">
+            <h1>Eventos</h1>
+          </div>
+          <div class="descripcion-content">
+            <p class="descripcion-texto">
+              Nuestro servicio de acompañamiento para eventos le permite disfrutar de sus celebraciones y actividades sociales con total tranquilidad. 
+              Un acompañante profesional estará a su lado para asistirle y asegurar que tenga una experiencia agradable y segura.
+            </p>
+            <div class="beneficios">
+              <h3>¿Qué incluye este servicio?</h3>
+              <ul>
+                <li>✅ Acompañamiento desde su hogar hasta el evento</li>
+                <li>✅ Asistencia durante todo el evento</li>
+                <li>✅ Apoyo para movilización y desplazamiento</li>
+                <li>✅ Acompañamiento en celebraciones familiares</li>
+                <li>✅ Asistencia en actividades sociales y culturales</li>
+                <li>✅ Acompañantes amables y sociables</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Búsqueda de Acompañante -->
+        <section class="busqueda-acompanante">
+          <h2>Buscar Acompañante Ideal</h2>
+          <form class="busqueda-form" id="busquedaForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ciudad">Ciudad</label>
+                <select id="ciudad" name="ciudad" required>
+                  <option value="">Seleccione una ciudad</option>
+                  <option value="medellin">Medellín</option>
+                  <option value="bogota">Bogotá</option>
+                  <option value="cali">Cali</option>
+                  <option value="barranquilla">Barranquilla</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="experiencia">Experiencia mínima</label>
+                <select id="experiencia" name="experiencia">
+                  <option value="">Cualquiera</option>
+                  <option value="0-1">0-1 años</option>
+                  <option value="2-5">2-5 años</option>
+                  <option value="6-10">6-10 años</option>
+                  <option value="10+">Más de 10 años</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tipoEvento">Tipo de evento</label>
+                <select id="tipoEvento" name="tipoEvento">
+                  <option value="">Cualquiera</option>
+                  <option value="familiar">Familiar</option>
+                  <option value="social">Social</option>
+                  <option value="cultural">Cultural</option>
+                  <option value="religioso">Religioso</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="disponibilidad">Disponibilidad</label>
+                <select id="disponibilidad" name="disponibilidad">
+                  <option value="">Cualquiera</option>
+                  <option value="manana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                  <option value="noche">Noche</option>
+                  <option value="completo">Día completo</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-buscar">Buscar Acompañantes</button>
+          </form>
+
+          <!-- Resultados de búsqueda -->
+          <div class="resultados-busqueda" id="resultadosBusqueda" style="display: none;">
+            <h3>Acompañantes Disponibles</h3>
+            <div class="acompanantes-grid" id="acompanantesGrid">
+              <!-- Los resultados se mostrarán aquí -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Agendar Cita -->
+        <section class="agendar-cita">
+          <h2>Agendar Acompañamiento para Evento</h2>
+          <form class="agendar-form" id="agendarForm">
+            <div class="form-group">
+              <label for="fechaEvento">Fecha del evento</label>
+              <input type="date" id="fechaEvento" name="fechaEvento" required>
+            </div>
+            <div class="form-group">
+              <label for="horaEvento">Hora del evento</label>
+              <input type="time" id="horaEvento" name="horaEvento" required>
+            </div>
+            <div class="form-group">
+              <label for="lugarEvento">Lugar del evento</label>
+              <input type="text" id="lugarEvento" name="lugarEvento" placeholder="Ej: Salón de eventos, dirección completa" required>
+            </div>
+            <div class="form-group">
+              <label for="tipoEventoAgendar">Tipo de evento</label>
+              <select id="tipoEventoAgendar" name="tipoEventoAgendar" required>
+                <option value="">Seleccione el tipo</option>
+                <option value="cumpleanos">Cumpleaños</option>
+                <option value="boda">Boda</option>
+                <option value="reunion">Reunión familiar</option>
+                <option value="actividad">Actividad cultural</option>
+                <option value="ceremonia">Ceremonia religiosa</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="duracionEvento">Duración estimada</label>
+              <select id="duracionEvento" name="duracionEvento" required>
+                <option value="">Seleccione la duración</option>
+                <option value="2">2 horas</option>
+                <option value="4">4 horas</option>
+                <option value="6">6 horas</option>
+                <option value="completo">Día completo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="observaciones">Observaciones adicionales</label>
+              <textarea id="observaciones" name="observaciones" rows="4" placeholder="Información adicional sobre el evento..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="acompananteSeleccionado">Acompañante seleccionado</label>
+              <select id="acompananteSeleccionado" name="acompananteSeleccionado">
+                <option value="">Primero busque un acompañante</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-agendar">Agendar Acompañamiento</button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3 class="footer-title">ABUECLICK</h3>
+          <h4 class="footer-subtitle">CONTÁCTANOS</h4>
+          <div class="footer-contact-item">
+            <span class="footer-icon">📞</span>
+            <div>
+              <p class="footer-label">Línea de servicio</p>
+              <p class="footer-value">+57 314 6904576</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-icon">📧</span>
+            <div>
+              <p class="footer-label">Correo electrónico</p>
+              <p class="footer-value">AbueClick@gmail.com</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-icon">💬</span>
+            <div>
+              <p class="footer-label">WhatsApp</p>
+              <p class="footer-value">+57 314 6904576</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">INFORMACIÓN</h3>
+          <h4 class="footer-subtitle">POLÍTICAS</h4>
+          <ul class="footer-links">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+            <li><a href="#">Política de cookies</a></li>
+          </ul>
+          <h4 class="footer-subtitle" style="margin-top: 20px;">ENLACES</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-title">REDES SOCIALES</h3>
+          <div class="footer-social">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">LinkedIn</a>
+          </div>
+          <div class="footer-update">
+            <p class="footer-label">Fecha última actualización</p>
+            <p class="footer-value">2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 AbueClick. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/autenticacion.js"></script>
+  <script src="js/servicio.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      actualizarAvatarGlobal();
+      actualizarBadgeNotificaciones();
+    });
+  </script>
+</body>
+</html>
+

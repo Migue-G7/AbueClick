@@ -1,0 +1,298 @@
+/* Estilos para página Sobre Nosotros */
+
+.sobre-nosotros-main {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sobre-nosotros-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-subtitle {
+  font-size: 24px;
+  font-weight: 400;
+  opacity: 0.95;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Content Sections */
+.content-section {
+  background: white;
+  border: 2px solid #52a6c4;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(82, 166, 196, 0.15);
+}
+
+.content-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 25px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.content-text {
+  color: #444;
+}
+
+.content-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Misión y Visión */
+.mision-vision {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.mision-box,
+.vision-box {
+  background: linear-gradient(135deg, #fff980 0%, #ffffff 100%);
+  border: 2px solid #faba4d;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 4px 12px rgba(250, 186, 77, 0.25);
+}
+
+.mision-box h3,
+.vision-box h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mision-box p,
+.vision-box p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #444;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Valores */
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.valor-item {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.valor-item:hover {
+  border-color: #52a6c4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(82, 166, 196, 0.15);
+}
+
+.valor-item h4 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #52a6c4;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.valor-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Equipo */
+.equipo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.equipo-item {
+  background: white;
+  border: 2px solid #52a6c4;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(82, 166, 196, 0.15);
+  transition: all 0.3s ease;
+}
+
+.equipo-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(82, 166, 196, 0.25);
+  border-color: #faba4d;
+}
+
+.equipo-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.equipo-item h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.equipo-cargo {
+  font-size: 16px;
+  font-weight: 500;
+  color: #52a6c4;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.equipo-descripcion {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estadísticas */
+.estadisticas-section {
+  background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
+  border-radius: 12px;
+  padding: 50px 40px;
+  color: white;
+  text-align: center;
+}
+
+.estadisticas-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.estadistica-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.estadistica-numero {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.estadistica-label {
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.9;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .mision-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .valores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .equipo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .estadisticas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sobre-nosotros-main {
+    padding: 20px 15px;
+  }
+
+  .hero-section {
+    padding: 40px 20px;
+  }
+
+  .hero-section h1 {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+
+  .content-section {
+    padding: 25px;
+  }
+
+  .content-section h2 {
+    font-size: 28px;
+  }
+
+  .equipo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .estadisticas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .estadistica-numero {
+    font-size: 36px;
+  }
+}
+

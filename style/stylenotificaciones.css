@@ -1,0 +1,138 @@
+/* Estilos para página de notificaciones */
+
+.notificaciones-main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificaciones-container h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificaciones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notificacion-item {
+  background: white;
+  border: 2px solid #52a6c4;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(82, 166, 196, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.notificacion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(82, 166, 196, 0.25);
+  border-color: #faba4d;
+}
+
+.notificacion-item.leida {
+  background: #f8f9fa;
+  border-color: #e0e0e0;
+  opacity: 0.7;
+}
+
+.notificacion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.notificacion-titulo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificacion-fecha {
+  font-size: 14px;
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificacion-mensaje {
+  font-size: 18px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificacion-detalles {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #52a6c4;
+}
+
+.notificacion-detalles p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+}
+
+.notificacion-detalles strong {
+  color: #222;
+  font-weight: 600;
+}
+
+.btn-marcar-leida {
+  padding: 8px 16px;
+  background: #52a6c4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-marcar-leida:hover {
+  background: #3d8ba8;
+  transform: translateY(-1px);
+}
+
+.sin-notificaciones {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.sin-notificaciones p {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .notificaciones-main {
+    padding: 20px 15px;
+  }
+
+  .notificaciones-container h1 {
+    font-size: 28px;
+  }
+
+  .notificacion-item {
+    padding: 20px;
+  }
+}
+

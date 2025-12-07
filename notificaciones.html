@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificaciones - AbueClick</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/stylenotificaciones.css">
   <style>
     html {
       scroll-behavior: smooth;
     }
   </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AbueClick - Iniciar Sesión</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/stylelogin.css">
 </head>
 <body>
   <div class="site">
     <header id="navbar">
-      <div class="nav-center">
+      <div class="nav-left">
         <div class="brand">
           <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
         </div>
         <nav>
           <ul class="nav-menu">
-            <li><a href="#">Inicio</a></li>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
             <li><a href="#footer">Contacto</a></li>
           </ul>
         </nav>
       </div>
+      <div class="nav-right">
+        <form class="search-form" role="search" onsubmit="return false;">
+          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+        </form>
+        <a href="notificaciones.html" class="notifications-btn" aria-label="Notificaciones" title="Notificaciones" id="notificationsLink">
+          <span class="notification-icon">🔔</span>
+          <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+        </a>
+        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
+          <span class="avatar-circle" id="userAvatar">AC</span>
+        </a>
+      </div>
     </header>
 
-    <div class="container">
-        <div class="image-section">
-            <img src="" alt="">
+    <main class="notificaciones-main">
+      <div class="notificaciones-container">
+        <h1>Notificaciones</h1>
+        <div id="notificacionesList" class="notificaciones-list">
+          <!-- Las notificaciones se cargarán aquí -->
         </div>
-        
-        <div class="form-section">
-            <div class="logo">
-                <span class="logo-text">AbueClick</span>
-            </div>
-            
-            <h2>Iniciar Sesión</h2>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
-                </div>
-                
-                <div class="forgot-password">
-                    <a href="#">¿Olvidaste tu cuenta?</a>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                <a href="registro.html" class="btn btn-secondary">Regístrate</a>
-            </form>
+        <div id="sinNotificaciones" class="sin-notificaciones" style="display: none;">
+          <p>No tienes notificaciones nuevas</p>
         </div>
-    </div>
+      </div>
+    </main>
 
-    <!-- FOOTER: información de pie de página, logo y enlaces -->
+    <!-- FOOTER -->
     <footer id="footer">
       <div class="footer-container">
         <div class="footer-column">
@@ -110,7 +102,7 @@
           </ul>
         </div>
 
-      <div class="footer-column">
+        <div class="footer-column">
           <h3 class="footer-title">REDES SOCIALES</h3>
           <div class="footer-social">
             <a href="#" class="social-link">Facebook</a>
@@ -131,24 +123,15 @@
   </div>
 
   <script src="js/autenticacion.js"></script>
+  <script src="js/servicio.js"></script>
+  <script src="js/notificaciones.js"></script>
   <script>
-    // Manejar el envío del formulario de login
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      
-      // Verificar credenciales
-      const resultado = verificarLogin(email, password);
-      
-      if (resultado.exito) {
-        alert('¡Bienvenido ' + resultado.usuario.nombre + '!');
-        window.location.href = 'index.html';
-      } else {
-        alert('Error: ' + resultado.mensaje);
-      }
+    document.addEventListener('DOMContentLoaded', function() {
+      actualizarAvatarGlobal();
+      cargarNotificaciones();
+      actualizarBadgeNotificaciones();
     });
   </script>
 </body>
 </html>
+
