@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #111;
   background: #f5f7fb
 }
@@ -22,12 +22,12 @@ header#navbar {
   grid-row: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 20px;
-  height: 64px;
-  border-bottom: 2px solid #e6e6e6;
-  background: linear-gradient(90deg, #ffffff, #f8f9fb);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+  height: 90px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .navbar .brand {
@@ -37,7 +37,7 @@ header#navbar {
 }
 
 .nav-logo {
-  width: 44px;
+  width: 100px;
   height: auto
 }
 
@@ -53,18 +53,18 @@ header#navbar {
   text-decoration: none;
   color: #222;
   padding: 6px 8px;
-  border-radius: 6px
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.nav-menu a:hover {
-  background: #eef2f6
-}
-
-/* Layout for navbar left/right groups */
-.nav-left {
+/* Layout for navbar center */
+.nav-center {
   display: flex;
   align-items: center;
-  gap: 18px
+  gap: 18px;
+  justify-content: center;
 }
     
 /* Make each sidebar item look like a grouped button with icon */
@@ -73,19 +73,24 @@ aside .sidebar-list a {
   align-items: center;
   justify-content: flex-start; /* alinear icono + etiqueta a la izquierda */
   gap: 10px;
-  padding: 10px 12px;
+  padding: 12px 15px;
   background: #ffffff;
-  border: 1px solid #e6e6e6;
+  border: 2px solid #fff980;
+  border-left: 3px solid #faba4d;
   border-radius: 8px;
-  color: #111;
+  color: #333;
   text-decoration: none;
   width: 100%; /* ocupar todo el ancho del sidebar */
-  transition: background .12s ease, transform .06s ease, box-shadow .12s ease;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 aside .sidebar-list a:hover {
-  background: #f8fafc;
+  background: linear-gradient(90deg, #fff980 0%, #ffffff 100%);
+  border-left-color: #52a6c4;
+  border-color: #52a6c4;
+  color: #333;
+  box-shadow: 0 4px 10px rgba(82, 166, 196, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(16, 24, 40, 0.04);
 }
 .sidebar-icon {
   width: 22px;
@@ -94,8 +99,9 @@ aside .sidebar-list a:hover {
   display: inline-block;
 }
 .sidebar-label {
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* If you want the buttons grouped visually (connected corners), you can enable this style.
@@ -117,15 +123,17 @@ aside .sidebar-list a:hover {
   width: 220px;
   max-width: 36vw;
   padding: 8px 10px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #87d7eb;
   border-radius: 8px;
-  background: #fff
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
 }
 
 .search-input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-  border-color: #3b82f6
+  box-shadow: 0 0 0 3px rgba(130, 215, 235, 0.3);
+  border-color: #52a6c4;
 }
 
 /* Profile button */
@@ -152,13 +160,14 @@ aside .sidebar-list a:hover {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #2563eb;
+  background: #52a6c4;
   color: #fff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .avatar-circle img {
@@ -194,9 +203,16 @@ aside .sidebar-list a:hover {
 aside#sidebar {
   width: 300px; /* aumentado para más espacio */
   padding: 20px 18px;
-  background: #fbfbfd;
-  border-right: 1px solid #e6e6e6;
+  background: white;
+  border-right: 2px solid #52a6c4;
   min-height: -webkit-fill-available;
+}
+
+aside#sidebar h2 {
+  color: #111;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 aside .sidebar-list {
@@ -212,34 +228,53 @@ aside .sidebar-list {
 main#main-content {
   flex: 1;
   padding: 28px;
-  background: #fff
+  background: linear-gradient(135deg, #f5f7fb 0%, #ffffff 100%);
 }
 
 /* Make main content area visually distinct */
 .main-section {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 16px;
-  border: 1px solid #f0f0f0;
-  background: #ffffff;
-  border-radius: 6px
+  padding: 24px;
+  border: 2px solid #87d7eb;
+  background: linear-gradient(135deg, #ffffff 0%, #a2f0ff 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(82, 166, 196, 0.2);
 }
 
 .main-section h1 {
-  margin-top: 0
+  margin-top: 0;
+  color: #52a6c4;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.main-section p {
+  color: #374151;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Profile card: presentación de persona */
 .profile-card {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
-  background: #ffffff;
-  border: 1px solid #e6e6e6;
-  padding: 16px;
-  border-radius: 10px;
-  margin-top: 18px;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  background: linear-gradient(135deg, #fff980 0%, #ffffff 100%);
+  border: 2px solid #faba4d;
+  border-left: 3px solid #faba4d;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 24px;
+  box-shadow: 0 4px 12px rgba(250, 186, 77, 0.25);
+  transition: all 0.2s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 6px 16px rgba(82, 166, 196, 0.3);
+  border-color: #87d7eb;
+  border-left-color: #52a6c4;
+  transform: translateY(-2px);
 }
 
 .profile-photo {
@@ -258,8 +293,9 @@ main#main-content {
 
 .profile-name {
   margin: 0;
-  font-size: 20px;
-  color: #111827;
+  font-size: 24px;
+  color: #52a6c4;
+  font-weight: 700;
 }
 
 .profile-meta {
@@ -281,13 +317,22 @@ main#main-content {
 
 .contact-btn {
   display: inline-block;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background-color: #2563eb;
+  padding: 12px 24px;
+  border-radius: 25px;
+  background-color: #52a6c4;
   color: #ffffff;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(82, 166, 196, 0.3);
+}
+
+.contact-btn:hover {
+  background-color: #4285a4;
+  box-shadow: 0 3px 10px rgba(82, 166, 196, 0.25);
 }
 
 /* Responsive: apilar la tarjeta en pantallas pequeñas */
@@ -308,33 +353,39 @@ main#main-content {
 /* FOOTER */
 footer#footer {
   grid-row: 3;
-  background-color: #f1f5f9;
+  background: #ffffff;
   position: relative;
-  padding: 10px 0;
-  /* reducido */
-  border-top: 1px solid #e6e6e6;
+  padding: 0 20px;
+  height: 90px;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-inner {
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
-  padding: 0 12px;
-  min-height: 40px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* left/right */
-}
-
-.footer-inner {
-  padding-left: 0
 }
 
 .footer-meta-left,
 .footer-meta-right {
-  font-size: 22px;
-  color: #6b7280
+  font-size: 16px;
+  color: #52a6c4;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-meta-left span {
+  color: #52a6c4;
+  font-weight: 600;
 }
 
 .footer-meta-right {
@@ -349,10 +400,11 @@ footer#footer {
 }
 
 .footer-mail-icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  display: inline-block
+  display: inline-block;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(67%) saturate(1000%) hue-rotate(165deg) brightness(0.9) contrast(0.9);
 }
 
 .footer-meta-left span {
@@ -372,22 +424,7 @@ footer#footer {
   }
 }
 
-/* Visual helpers: borders and subtle backgrounds to make structure visible */
-header#navbar {
-  background: #fff
-}
-
-aside#sidebar {
-  background: #f9fafb
-}
-
-main#main-content {
-  background: transparent
-}
-
-footer#footer {
-  background: #f8fafc
-}
+/* Visual helpers removed - using new color scheme */
 
 /* Responsive: en pantallas pequeñas movemos la sidebar y ajustamos footer */
 @media (max-width: 768px) {

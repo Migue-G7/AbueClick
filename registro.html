@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/styleregistro.css">
 </head>
 <body>
-
+  <div class="site">
     <header id="navbar">
-      <!-- Left side: brand + main menu (aligned left) -->
-      <div class="nav-left">
+      <div class="nav-center">
         <div class="brand">
           <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
         </div>
@@ -22,8 +24,6 @@
           </ul>
         </nav>
       </div>
-
-      <!-- Right side: search + profile (aligned right) -->
     </header>
 
     <div class="container">
@@ -62,13 +62,16 @@
 
         <!-- Sección de Servicios -->
         <div class="service-section">
-            <h2>Ciudad*</h2>
-            <select class="city-select">
-                <option value="">Seleccionar ciudad</option>
-                <option value="medellin">Medellín</option>
-                <option value="bogota" selected>Bogotá</option>
-                <option value="barranquilla">Barranquilla</option>
-            </select>
+            <div class="city-select">
+                <h2 class="section-title">Ciudad*</h2>
+                <select>
+                    <option value="">Seleccionar ciudad</option>
+                    <option value="medellin">Medellín</option>
+                    <option value="bogota" selected>Bogotá</option>
+                    <option value="barranquilla">Barranquilla</option>
+                </select>
+            </div>
+            
 
             <div class="checkbox-group">
                 <h3 class="section-title">Seleccione su Tipo de Usuario</h3>
@@ -100,5 +103,6 @@
             <button type="submit" class="submit-btn">Enviar Solicitud</button>
         </div>
     </div>
+  </div>
 </body>
 </html>
