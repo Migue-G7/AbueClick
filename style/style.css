@@ -22,7 +22,7 @@ header#navbar {
   grid-row: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 20px;
   height: 90px;
   border-bottom: 1px solid #e0e0e0;
@@ -59,12 +59,11 @@ header#navbar {
   transition: all 0.3s ease;
 }
 
-/* Layout for navbar center */
-.nav-center {
+/* Layout for navbar left/right groups */
+.nav-left {
   display: flex;
   align-items: center;
   gap: 18px;
-  justify-content: center;
 }
     
 /* Make each sidebar item look like a grouped button with icon */
@@ -148,7 +147,8 @@ aside .sidebar-list a:hover {
   align-items: center;
   justify-content: center;
   width: 40px;
-  height: 40px
+  height: 40px;
+  text-decoration: none;
 }
 
 .profile-btn:hover {
@@ -168,6 +168,8 @@ aside .sidebar-list a:hover {
   font-weight: 700;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
 .avatar-circle img {
@@ -175,7 +177,10 @@ aside .sidebar-list a:hover {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  display: block
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* On small screens hide the search input and reduce paddings */

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - AbueClick</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/styleperfil.css">
+</head>
+<body>
+  <div class="site">
+    <header id="navbar">
+      <div class="nav-center">
+        <div class="brand">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+        </div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Right side: search + profile (aligned right) -->
+      <div class="nav-right">
+        <form class="search-form" role="search" onsubmit="return false;">
+          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+        </form>
+        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
+          <span class="avatar-circle" id="userAvatarNav">AC</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar-section">
+                <div class="avatar-large" id="avatarLarge">
+                    <span id="avatarInitials">AC</span>
+                </div>
+                <button class="edit-avatar-btn" id="editAvatarBtn">Cambiar Foto</button>
+                <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+            </div>
+            <div class="profile-info-header">
+                <h1 id="profileName">Nombre Apellido</h1>
+                <p id="profileEmail">usuario@email.com</p>
+                <p id="profileType" class="user-type">Tipo de Usuario</p>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <h2>Información Personal</h2>
+                <form id="profileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editNombre">Nombre*</label>
+                            <input type="text" id="editNombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editApellido">Apellido*</label>
+                            <input type="text" id="editApellido" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editEmail">Correo Electrónico*</label>
+                            <input type="email" id="editEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editTelefono">Teléfono*</label>
+                            <input type="tel" id="editTelefono" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editFecha">Fecha de Nacimiento*</label>
+                        <input type="date" id="editFecha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCiudad">Ciudad*</label>
+                        <select id="editCiudad" required>
+                            <option value="">Seleccionar ciudad</option>
+                            <option value="medellin">Medellín</option>
+                            <option value="bogota">Bogotá</option>
+                            <option value="barranquilla">Barranquilla</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editDisponibilidad">Disponibilidad Horaria*</label>
+                        <select id="editDisponibilidad" required>
+                            <option value="">Seleccionar horario</option>
+                            <option value="manana">Mañana (8am - 12pm)</option>
+                            <option value="tarde">Tarde (12pm - 6pm)</option>
+                            <option value="noche">Noche (6pm - 10pm)</option>
+                        </select>
+                    </div>
+
+                    <div id="acompananteFields" class="campos-condicionales" style="display: none;">
+                        <div class="form-group">
+                            <label for="editExperiencia">Experiencia*</label>
+                            <select id="editExperiencia">
+                                <option value="">Seleccionar experiencia</option>
+                                <option value="0-1">0-1 años</option>
+                                <option value="2-5">2-5 años</option>
+                                <option value="6-10">6-10 años</option>
+                                <option value="10+">Más de 10 años</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editNivelEducacion">Nivel de Educación*</label>
+                            <select id="editNivelEducacion">
+                                <option value="">Seleccionar nivel</option>
+                                <option value="bachillerato">Bachillerato</option>
+                                <option value="tecnico">Técnico</option>
+                                <option value="tecnologo">Tecnólogo</option>
+                                <option value="universitario">Universitario</option>
+                                <option value="postgrado">Postgrado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editInfoAdicional">Información Adicional</label>
+                        <textarea id="editInfoAdicional" placeholder="Escribe información adicional aquí..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-save">Guardar Cambios</button>
+                        <button type="button" class="btn-cancel" onclick="window.location.href='index.html'">Cancelar</button>
+                        <button type="button" class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER: información de pie de página, logo y enlaces -->
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="footer-meta-left">
+          <img src="resources/icons/correo-electronico.png" alt="correo" class="footer-mail-icon">
+          <span>Correo de Contacto: AbueClick@gmail.com</span>
+        </div>
+        <div class="footer-meta-right">© 2025 AbueClick</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/autenticacion.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>
+

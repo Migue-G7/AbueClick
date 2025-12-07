@@ -139,7 +139,7 @@ header#navbar {
     grid-row: 2;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 20px;
     max-width: 1200px;
     width: 100%;
@@ -157,6 +157,8 @@ header#navbar {
     flex: 0 0 48%;
     max-width: 48%;
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-section h2 {
@@ -164,6 +166,12 @@ header#navbar {
     font-size: 30px;
     margin-bottom: 25px;
     font-weight: 600;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .form-group {
@@ -180,6 +188,7 @@ label {
 
 input[type="text"],
 input[type="email"],
+input[type="password"],
 input[type="tel"],
 input[type="date"],
 textarea {
@@ -227,6 +236,8 @@ textarea:focus {
     flex: 0 0 48%;
     max-width: 48%;
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-section h2 {
@@ -272,7 +283,8 @@ textarea:focus {
     margin-bottom: 10px;
 }
 
-.checkbox-item input[type="checkbox"] {
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
     width: 20px;
     height: 20px;
     margin-right: 10px;
@@ -282,6 +294,44 @@ textarea:focus {
 
 .checkbox-item label {
     margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.campos-condicionales {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 2px solid #faba4d;
+    display: none;
+}
+
+.campos-condicionales .form-group {
+    margin-bottom: 20px;
+}
+
+.campos-condicionales .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.campos-condicionales label {
+    display: block;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 30px;
+}
+
+.campos-condicionales select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #87d7eb;
+    color: #000;
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     cursor: pointer;
 }
@@ -324,7 +374,7 @@ textarea {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
-    margin-top: 10px;
+    margin-top: auto;
 }
 
 .submit-btn:hover {

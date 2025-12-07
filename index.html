@@ -17,13 +17,13 @@
     <!-- NAVBAR: editar aquí el menú superior -->
     <header id="navbar">
       <!-- Left side: brand + main menu (aligned left) -->
-      <div class="nav-center">
+      <div class="nav-left">
         <div class="brand">
           <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
         </div>
         <nav>
           <ul class="nav-menu">
-            <li><a href="#">Inicio</a></li>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="#">Sobre nosotros</a></li>
             <li><a href="#">Contacto</a></li>
           </ul>
@@ -36,9 +36,9 @@
           <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
         </form>
         <!-- Avatar circular: reemplaza 'AC' por las iniciales del usuario o usa una imagen en su lugar -->
-        <button class="profile-btn" aria-label="Perfil" title="Perfil">
-          <span class="avatar-circle">AC</span>
-        </button>
+        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
+          <span class="avatar-circle" id="userAvatar">AC</span>
+        </a>
       </div>
     </header>
 
@@ -111,6 +111,22 @@
   </div>
 
   <!-- Si tienes scripts, puedes añadirlos aquí. java.js puede usarse para comportamientos UI. -->
+  <script src="js/autenticacion.js"></script>
+  <script>
+    // Verificar sesión al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      const usuarioActual = verificarSesion();
+      
+      // Si no hay sesión activa, redirigir a login
+      if (!usuarioActual) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Si hay sesión, actualizar avatar
+      actualizarAvatarGlobal();
+    });
+  </script>
   <script src="java.js"></script>
 </body>
 
