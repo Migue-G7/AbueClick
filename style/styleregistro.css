@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    min-height: 100vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+header#navbar {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 64px;
+  border-bottom: 2px solid #e6e6e6;
+  background: linear-gradient(90deg, #ffffff, #f8f9fb);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.nav-logo {
+  width: 100px;
+  height: auto
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #222;
+  padding: 6px 8px;
+  border-radius: 6px
+}
+
+.nav-menu a:hover {
+  background: #eef2f6
+}
+
+/* Layout for navbar left/right groups */
+.nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto 0;
+}
+
+.form-section {
+    background: linear-gradient(180deg, #FFF176 0%, #FFEB3B 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+.form-section h2 {
+    color: #87d7eb;
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #87d7eb;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid #87d7eb;
+}
+
+.date-input {
+    position: relative;
+}
+
+.date-input::after {
+    content: '📅';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.service-section {
+    background: linear-gradient(180deg, #FFF176 0%, #FFEB3B 100%);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+.service-section h2 {
+    color: #1a237e;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.city-badge {
+    display: inline-block;
+    background: #87d7eb;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.city-select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #87d7eb;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.city-select:focus {
+    outline: 2px solid #a2f0ff;
+}
+
+.section-title {
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    margin-bottom: 25px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #a2f0ff;
+}
+
+.checkbox-item label {
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.time-select {
+    margin-bottom: 25px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #87d7eb;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: 2px solid #0097A7;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #1a237e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #0d1642;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}

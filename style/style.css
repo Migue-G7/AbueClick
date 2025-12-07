@@ -1,0 +1,420 @@
+/* Reset y base */
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+  background: #f5f7fb
+}
+
+/* Estructura principal: navbar, contenido (sidebar+main) y footer */
+.site {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+header#navbar {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 64px;
+  border-bottom: 2px solid #e6e6e6;
+  background: linear-gradient(90deg, #ffffff, #f8f9fb);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.navbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.nav-logo {
+  width: 44px;
+  height: auto
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #222;
+  padding: 6px 8px;
+  border-radius: 6px
+}
+
+.nav-menu a:hover {
+  background: #eef2f6
+}
+
+/* Layout for navbar left/right groups */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 18px
+}
+    
+/* Make each sidebar item look like a grouped button with icon */
+aside .sidebar-list a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* alinear icono + etiqueta a la izquierda */
+  gap: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  color: #111;
+  text-decoration: none;
+  width: 100%; /* ocupar todo el ancho del sidebar */
+  transition: background .12s ease, transform .06s ease, box-shadow .12s ease;
+}
+aside .sidebar-list a:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(16, 24, 40, 0.04);
+}
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: inline-block;
+}
+.sidebar-label {
+  font-size: 14px;
+  text-align: left;
+}
+
+/* If you want the buttons grouped visually (connected corners), you can enable this style.
+   For now we keep them separate with consistent gap. */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+/* Search form */
+.search-form {
+  display: flex;
+  align-items: center
+}
+
+.search-input {
+  width: 220px;
+  max-width: 36vw;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  border-color: #3b82f6
+}
+
+/* Profile button */
+.profile-btn {
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px
+}
+
+.profile-btn:hover {
+  background: rgba(0, 0, 0, 0.04)
+}
+
+/* Avatar circle inside profile button */
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block
+}
+
+/* On small screens hide the search input and reduce paddings */
+@media (max-width: 600px) {
+  .search-input {
+    display: none
+  }
+
+  .nav-menu {
+    gap: 8px
+  }
+
+  .nav-logo {
+    width: 36px
+  }
+}
+
+/* CONTENIDO: sidebar + main */
+.content {
+  grid-row: 2;
+  display: flex;
+  align-items: flex-start;
+}
+
+aside#sidebar {
+  width: 300px; /* aumentado para más espacio */
+  padding: 20px 18px;
+  background: #fbfbfd;
+  border-right: 1px solid #e6e6e6;
+  min-height: -webkit-fill-available;
+}
+
+aside .sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch; /* no centrar horizontalmente, usar ancho completo */
+}
+
+main#main-content {
+  flex: 1;
+  padding: 28px;
+  background: #fff
+}
+
+/* Make main content area visually distinct */
+.main-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  background: #ffffff;
+  border-radius: 6px
+}
+
+.main-section h1 {
+  margin-top: 0
+}
+
+/* Profile card: presentación de persona */
+.profile-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 18px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: 0 0 120px;
+  background: #f3f4f6;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 20px;
+  color: #111827;
+}
+
+.profile-meta {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.profile-desc {
+  margin: 10px 0;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.profile-spec {
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Responsive: apilar la tarjeta en pantallas pequeñas */
+@media (max-width: 600px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+    flex: 0 0 100px;
+  }
+  .profile-info { align-items: center; }
+}
+
+/* FOOTER */
+footer#footer {
+  grid-row: 3;
+  background-color: #f1f5f9;
+  position: relative;
+  padding: 10px 0;
+  /* reducido */
+  border-top: 1px solid #e6e6e6;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 12px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* left/right */
+}
+
+.footer-inner {
+  padding-left: 0
+}
+
+.footer-meta-left,
+.footer-meta-right {
+  font-size: 22px;
+  color: #6b7280
+}
+
+.footer-meta-right {
+  text-align: right
+}
+
+/* Mail icon next to email in footer */
+.footer-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.footer-mail-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: inline-block
+}
+
+.footer-meta-left span {
+  display: inline-block
+}
+
+/* On small screens stack footer items vertically */
+@media (max-width: 480px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 6px;
+    align-items: center
+  }
+
+  .footer-meta-right {
+    text-align: center
+  }
+}
+
+/* Visual helpers: borders and subtle backgrounds to make structure visible */
+header#navbar {
+  background: #fff
+}
+
+aside#sidebar {
+  background: #f9fafb
+}
+
+main#main-content {
+  background: transparent
+}
+
+footer#footer {
+  background: #f8fafc
+}
+
+/* Responsive: en pantallas pequeñas movemos la sidebar y ajustamos footer */
+@media (max-width: 768px) {
+  aside#sidebar {
+    display: none
+  }
+
+  .content {
+    display: block
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    display: none
+  }
+
+  .footer-inner {
+    padding-top: 6px;
+    padding-bottom: 8px;
+    text-align: center;
+    padding-left: 0
+  }
+
+  main#main-content {
+    padding: 12px
+  }
+}
+
+/* End of stylesheet */

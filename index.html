@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AbueClick</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <!-- Estructura convencional y escalable sin partials -->
+  <div class="site">
+    <!-- NAVBAR: editar aquí el menú superior -->
+    <header id="navbar">
+      <!-- Left side: brand + main menu (aligned left) -->
+      <div class="nav-left">
+        <div class="brand">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+        </div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Right side: search + profile (aligned right) -->
+      <div class="nav-right">
+        <form class="search-form" role="search" onsubmit="return false;">
+          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+        </form>
+        <!-- Avatar circular: reemplaza 'AC' por las iniciales del usuario o usa una imagen en su lugar -->
+        <button class="profile-btn" aria-label="Perfil" title="Perfil">
+          <span class="avatar-circle">AC</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENIDO: sidebar + main -->
+    <div class="content">
+      <!-- SIDEBAR: enlaces y navegación secundaria -->
+      <aside id="sidebar">
+        <h2>Seleccione el servicio que deseas:</h2>
+        <ul class="sidebar-list">
+            <li>
+              <a href="#">
+                <img src="resources/icons/atencion-medica.png" alt="" class="sidebar-icon">
+                <span class="sidebar-label">Cita Medica</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="resources/icons/calendario.png" alt="Calendario" class="sidebar-icon">
+                <span class="sidebar-label">Eventos</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="resources/icons/carrito-de-compras.png" alt="carrito-de-compras" class="sidebar-icon">
+                <span class="sidebar-label">Compras</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="resources/icons/contrato.png" alt="Tramites" class="sidebar-icon">
+                <span class="sidebar-label">Tramites</span>
+              </a>
+            </li>
+        </ul>
+      </aside>
+
+      <!-- MAIN: contenido principal de la página -->
+      <main id="main-content">
+        <section class="main-section">
+          <h1>Bienvenido a AbueClick</h1>
+          <p>Este es el contenido principal. Aquí podrás añadir artículos, secciones y componentes.</p>
+          <icon-button icon="search" aria-label="Buscar"></icon-button>
+
+          <!-- Tarjeta de presentación de persona -->
+          <!-- Reemplaza assets/persona1.png por la foto real de la persona -->
+          <div class="profile-card">
+            <img src="resources/perfiles/mujer.png" alt="Persona 1" class="profile-photo">
+            <div class="profile-info">
+              <h2 class="profile-name">María Pérez</h2>
+              <div class="profile-meta"><span>Edad: 68</span> · <span>Experiencia: 12 años</span></div>
+              <p class="profile-desc">Enfermera con amplia trayectoria en atención domiciliaria y cuidado geriátrico. Empática y paciente, especializada en acompañamiento integral.</p>
+              <p class="profile-spec"><strong>Especialidades:</strong> Cuidado gerontológico, administración de medicación, apoyo psicológico.</p>
+              <button class="contact-btn">Contáctame</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- FOOTER: información de pie de página, logo y enlaces -->
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="footer-meta-left">
+          <img src="resources/icons/correo-electronico.png" alt="correo" class="footer-mail-icon">
+          <span>Correo de Contacto: AbueClick@gmail.com</span>
+        </div>
+        <div class="footer-meta-right">© 2025 AbueClick</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Si tienes scripts, puedes añadirlos aquí. java.js puede usarse para comportamientos UI. -->
+  <script src="java.js"></script>
+</body>
+
+</html>
