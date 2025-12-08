@@ -282,16 +282,51 @@ document.addEventListener('DOMContentLoaded', function() {
       // Detectar el tipo de servicio desde el título de la página
       const servicioTipo = document.querySelector('h1').textContent.trim();
       
-      // Guardar cita en localStorage (en producción se enviaría a un servidor)
+      // Obtener información del adulto mayor que está agendando PRIMERO
+      const usuarioActual = verificarSesion();
+      if (!usuarioActual) {
+        alert('Error: No hay sesión activa. Por favor inicia sesión.');
+        return;
+      }
+
+      const usuarios = obtenerUsuarios();
+      const usuario = usuarios.find(u => u.email.toLowerCase() === usuarioActual.email.toLowerCase());
+      
+      // Obtener información del acompañante seleccionado
+      const acompanantes = obtenerAcompanantesRegistrados();
+      const acompananteSeleccionado = acompanantes.find(a => a.id === acompananteId || a.email === acompananteId);
+      
+      if (!acompananteSeleccionado || !acompananteSeleccionado.email) {
+        alert('Error: No se pudo encontrar la información del acompañante seleccionado.');
+        return;
+      }
+
+      // Crear objeto de cita con TODA la información necesaria
       const cita = {
         fecha: formData.get('fechaCita') || formData.get('fechaEvento') || formData.get('fechaCompras') || formData.get('fechaTramite'),
         hora: formData.get('horaCita') || formData.get('horaEvento') || formData.get('horaCompras') || formData.get('horaTramite'),
         lugar: formData.get('centroMedico') || formData.get('lugarEvento') || formData.get('lugarCompras') || formData.get('entidadTramite'),
         tipo: formData.get('tipoConsulta') || formData.get('tipoEventoAgendar') || formData.get('tipoComprasAgendar') || formData.get('tipoTramiteAgendar'),
         observaciones: observaciones,
-        acompananteId: acompananteId,
+        acompananteId: acompananteSeleccionado.email, // Guardar el EMAIL como ID
         servicio: servicioTipo,
-        fechaCreacion: new Date().toISOString()
+        fechaCreacion: new Date().toISOString(),
+        // Información del adulto mayor
+        adultoMayor: usuario ? {
+          nombre: `${usuario.nombre} ${usuario.apellido}`,
+          email: usuario.email,
+          telefono: usuario.telefono || ''
+        } : {
+          nombre: `${usuarioActual.nombre || ''} ${usuarioActual.apellido || ''}`.trim() || 'Usuario',
+          email: usuarioActual.email,
+          telefono: ''
+        },
+        // Información del acompañante
+        acompanante: {
+          nombre: acompananteSeleccionado.nombre,
+          email: acompananteSeleccionado.email,
+          telefono: acompananteSeleccionado.telefono || ''
+        }
       };
       
       // Agregar campos específicos según el servicio
@@ -305,35 +340,55 @@ document.addEventListener('DOMContentLoaded', function() {
         cita.documentosNecesarios = formData.get('documentosNecesarios');
       }
 
-      // Obtener información del adulto mayor que está agendando
-      const usuarioActual = verificarSesion();
-      if (usuarioActual) {
-        const usuarios = obtenerUsuarios();
-        const usuario = usuarios.find(u => u.email === usuarioActual.email);
-        if (usuario) {
-          cita.adultoMayor = {
-            nombre: `${usuario.nombre} ${usuario.apellido}`,
-            email: usuario.email,
-            telefono: usuario.telefono || ''
-          };
-        }
-      }
-
-      // Obtener información del acompañante seleccionado
-      const acompanantes = obtenerAcompanantesRegistrados();
-      const acompananteSeleccionado = acompanantes.find(a => a.id === acompananteId);
-      if (acompananteSeleccionado && acompananteSeleccionado.email) {
-        cita.acompanante = {
-          nombre: acompananteSeleccionado.nombre,
-          email: acompananteSeleccionado.email,
-          telefono: acompananteSeleccionado.telefono
-        };
-      }
-
       // Guardar cita
       const citas = JSON.parse(localStorage.getItem('citas') || '[]');
       citas.push(cita);
       localStorage.setItem('citas', JSON.stringify(citas));
+      
+      // Debug: Verificar que la cita se guardó correctamente
+      console.log('=== CITA GUARDADA ===');
+      console.log('Cita completa:', JSON.stringify(cita, null, 2));
+      console.log('Adulto Mayor email:', cita.adultoMayor?.email);
+      console.log('Acompañante email:', cita.acompanante?.email);
+      console.log('Acompañante ID:', cita.acompananteId);
+      console.log('Total de citas en sistema:', citas.length);
+      
+      // Verificar inmediatamente que se guardó
+      const citasVerificadas = JSON.parse(localStorage.getItem('citas') || '[]');
+      console.log('✅ Verificación - Total de citas después de guardar:', citasVerificadas.length);
+      if (citasVerificadas.length > 0) {
+        const ultimaCita = citasVerificadas[citasVerificadas.length - 1];
+        console.log('✅ Última cita guardada:', {
+          servicio: ultimaCita.servicio,
+          adultoMayorEmail: ultimaCita.adultoMayor?.email,
+          acompananteEmail: ultimaCita.acompanante?.email,
+          acompananteId: ultimaCita.acompananteId
+        });
+      }
+
+      // Crear conversación de chat entre el adulto mayor y el acompañante
+      if (usuarioActual && acompananteSeleccionado && acompananteSeleccionado.email) {
+        const conversaciones = JSON.parse(localStorage.getItem('conversaciones') || '[]');
+        
+        // Verificar si ya existe una conversación para esta cita
+        const conversacionExistente = conversaciones.find(c => c.citaId === cita.fechaCreacion);
+        
+        if (!conversacionExistente) {
+          const nuevaConversacion = {
+            id: Date.now().toString(),
+            citaId: cita.fechaCreacion,
+            adultoMayorEmail: usuarioActual.email,
+            acompananteEmail: acompananteSeleccionado.email,
+            servicio: servicioTipo,
+            fechaCreacion: new Date().toISOString(),
+            ultimoMensaje: null,
+            ultimaActualizacion: new Date().toISOString()
+          };
+          
+          conversaciones.push(nuevaConversacion);
+          localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+        }
+      }
 
       // Crear notificación para el acompañante
       if (acompananteSeleccionado && acompananteSeleccionado.email) {
@@ -353,12 +408,17 @@ document.addEventListener('DOMContentLoaded', function() {
         );
       }
 
-      alert('¡Cita agendada exitosamente! El acompañante recibirá una notificación.');
+      alert('¡Cita agendada exitosamente! El acompañante recibirá una notificación. Serás redirigido al inicio.');
       agendarForm.reset();
       const resultadosDiv = document.getElementById('resultadosBusqueda');
       if (resultadosDiv) {
         resultadosDiv.style.display = 'none';
       }
+      
+      // Redirigir a la página de inicio
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
     });
   }
 });

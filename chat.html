@@ -1,42 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AbueClick</title>
+  <title>Chat - AbueClick</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/stylechat.css">
   <style>
     html {
       scroll-behavior: smooth;
     }
   </style>
 </head>
-
 <body>
-  <!-- Estructura convencional y escalable sin partials -->
   <div class="site">
-    <!-- NAVBAR: editar aquí el menú superior -->
     <header id="navbar">
-      <!-- Left side: brand + main menu (aligned left) -->
       <div class="nav-left">
         <div class="brand">
           <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
         </div>
         <nav>
-            <ul class="nav-menu">
-              <li><a href="index.html">Inicio</a></li>
-              <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
-              <li><a href="mis-citas.html">Mis Citas</a></li>
-              <li><a href="#footer">Contacto</a></li>
-            </ul>
+          <ul class="nav-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="#footer">Contacto</a></li>
+          </ul>
         </nav>
       </div>
-
-      <!-- Right side: search + profile (aligned right) -->
       <div class="nav-right">
         <form class="search-form" role="search" onsubmit="return false;">
           <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
@@ -48,70 +41,73 @@
         <a href="chat.html" class="chat-btn" aria-label="Chat" title="Chat">
           <span class="chat-icon">💬</span>
         </a>
-        <!-- Avatar circular: reemplaza 'AC' por las iniciales del usuario o usa una imagen en su lugar -->
         <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
           <span class="avatar-circle" id="userAvatar">AC</span>
         </a>
       </div>
     </header>
 
-    <!-- CONTENIDO: sidebar + main -->
-    <div class="content">
-      <!-- SIDEBAR: enlaces y navegación secundaria -->
-      <aside id="sidebar">
-        <h2>Seleccione el servicio que deseas:</h2>
-        <ul class="sidebar-list">
-            <li>
-              <a href="servicio-cita-medica.html">
-                <img src="resources/icons/atencion-medica.png" alt="" class="sidebar-icon">
-                <span class="sidebar-label">Cita Medica</span>
-              </a>
-            </li>
-            <li>
-              <a href="servicio-eventos.html">
-                <img src="resources/icons/calendario.png" alt="Calendario" class="sidebar-icon">
-                <span class="sidebar-label">Eventos</span>
-              </a>
-            </li>
-            <li>
-              <a href="servicio-compras.html">
-                <img src="resources/icons/carrito-de-compras.png" alt="carrito-de-compras" class="sidebar-icon">
-                <span class="sidebar-label">Compras</span>
-              </a>
-            </li>
-            <li>
-              <a href="servicio-tramites.html">
-                <img src="resources/icons/contrato.png" alt="Tramites" class="sidebar-icon">
-                <span class="sidebar-label">Tramites</span>
-              </a>
-            </li>
-        </ul>
-      </aside>
+    <main class="chat-main">
+      <div class="chat-container">
+        <!-- Lista de conversaciones -->
+        <aside class="conversaciones-sidebar">
+          <h2>Conversaciones</h2>
+          <div id="listaConversaciones" class="lista-conversaciones">
+            <!-- Las conversaciones se cargarán aquí -->
+          </div>
+          <div id="sinConversaciones" class="sin-conversaciones" style="display: none;">
+            <p>No tienes conversaciones activas.</p>
+            <p class="sin-conversaciones-hint">Las conversaciones aparecen cuando agendas una cita con un acompañante. Una vez agendada la cita, podrás chatear con el acompañante contratado.</p>
+          </div>
+        </aside>
 
-      <!-- MAIN: contenido principal de la página -->
-      <main id="main-content">
-        <section class="main-section">
-          <h1>Bienvenido a AbueClick</h1>
-          <p>Este es el contenido principal. Aquí podrás añadir artículos, secciones y componentes.</p>
-          <icon-button icon="search" aria-label="Buscar"></icon-button>
-
-          <!-- Tarjeta de presentación de persona -->
-          <!-- Reemplaza assets/persona1.png por la foto real de la persona -->
-          <div class="profile-card">
-            <img src="resources/perfiles/mujer.png" alt="Persona 1" class="profile-photo">
-            <div class="profile-info">
-              <h2 class="profile-name">María Pérez</h2>
-              <div class="profile-meta"><span>Edad: 68</span> · <span>Experiencia: 12 años</span></div>
-              <p class="profile-desc">Enfermera con amplia trayectoria en atención domiciliaria y cuidado geriátrico. Empática y paciente, especializada en acompañamiento integral.</p>
-              <p class="profile-spec"><strong>Especialidades:</strong> Cuidado gerontológico, administración de medicación, apoyo psicológico.</p>
-              <button class="contact-btn">Contáctame</button>
+        <!-- Área de chat -->
+        <div class="chat-area">
+          <div id="chatVacio" class="chat-vacio">
+            <div class="chat-vacio-content">
+              <span class="chat-vacio-icon">💬</span>
+              <h2>Selecciona una conversación</h2>
+              <p>Elige una conversación de la lista para comenzar a chatear</p>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
 
-    <!-- FOOTER: información de pie de página, logo y enlaces -->
+          <div id="chatActivo" class="chat-activo" style="display: none;">
+            <!-- Header del chat -->
+            <div class="chat-header">
+              <div class="chat-header-info">
+                <span class="chat-avatar" id="chatAvatar">AC</span>
+                <div>
+                  <h3 id="chatNombre">Nombre del contacto</h3>
+                  <p id="chatServicio" class="chat-servicio">Servicio</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mensajes -->
+            <div class="chat-mensajes" id="chatMensajes">
+              <!-- Los mensajes se cargarán aquí -->
+            </div>
+
+            <!-- Input de mensaje -->
+            <div class="chat-input-container">
+              <form id="formEnviarMensaje" class="chat-form">
+                <input 
+                  type="text" 
+                  id="inputMensaje" 
+                  class="chat-input" 
+                  placeholder="Escribe un mensaje..." 
+                  autocomplete="off"
+                >
+                <button type="submit" class="chat-send-btn" aria-label="Enviar mensaje">
+                  <span>Enviar</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
     <footer id="footer">
       <div class="footer-container">
         <div class="footer-column">
@@ -177,24 +173,21 @@
     </footer>
   </div>
 
-  <!-- Si tienes scripts, puedes añadirlos aquí. java.js puede usarse para comportamientos UI. -->
   <script src="js/autenticacion.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/notificaciones.js"></script>
   <script>
-    // Verificar sesión al cargar la página
     document.addEventListener('DOMContentLoaded', function() {
       const usuarioActual = verificarSesion();
-      
-      // Si no hay sesión activa, redirigir a login
       if (!usuarioActual) {
         window.location.href = 'login.html';
         return;
       }
-      
-      // Si hay sesión, actualizar avatar
       actualizarAvatarGlobal();
+      actualizarBadgeNotificaciones();
+      cargarConversaciones();
     });
   </script>
-  <script src="java.js"></script>
 </body>
-
 </html>
+

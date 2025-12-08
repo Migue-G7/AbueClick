@@ -108,4 +108,3 @@ document.addEventListener('DOMContentLoaded', function() {
   // Actualizar cada 30 segundos
   setInterval(actualizarBadgeNotificaciones, 30000);
 });
-

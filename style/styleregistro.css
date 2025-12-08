@@ -217,14 +217,7 @@ textarea:focus {
     position: relative;
 }
 
-.date-input::after {
-    content: '📅';
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
+/* Icono removido según solicitud del usuario */
 
 .service-section {
     background: linear-gradient(135deg, #fff980 0%, #ffffff 100%);

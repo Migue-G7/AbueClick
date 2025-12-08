@@ -181,6 +181,32 @@ aside .sidebar-list a:hover {
   display: inline-block;
 }
 
+.chat-btn {
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.chat-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.chat-icon {
+  font-size: 20px;
+  display: inline-block;
+}
+
 .notification-badge {
   position: absolute;
   top: -2px;
