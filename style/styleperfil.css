@@ -431,6 +431,27 @@ textarea {
     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
+.btn-delete {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #8b0000;
+    color: white;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.btn-delete:hover {
+    background: #5c0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
 /* FOOTER */
 footer#footer {
   grid-row: 3;

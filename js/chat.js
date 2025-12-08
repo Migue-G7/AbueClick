@@ -26,7 +26,11 @@ function crearConversacion(adultoMayorEmail, acompananteEmail, citaId, servicio)
   };
 
   conversaciones.push(nuevaConversacion);
-  localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('conversaciones', conversaciones);
+  } else {
+    localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+  }
   
   return nuevaConversacion;
 }
@@ -118,14 +122,22 @@ function enviarMensaje(conversacionId, texto, remitenteEmail) {
   };
 
   mensajes.push(nuevoMensaje);
-  localStorage.setItem('mensajes', JSON.stringify(mensajes));
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('mensajes', mensajes);
+  } else {
+    localStorage.setItem('mensajes', JSON.stringify(mensajes));
+  }
 
   // Actualizar la conversación
   const conversacion = conversaciones.find(c => c.id === conversacionId);
   if (conversacion) {
     conversacion.ultimoMensaje = texto.trim();
     conversacion.ultimaActualizacion = new Date().toISOString();
-    localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+    if (typeof guardarEnBaseDatos === 'function') {
+      guardarEnBaseDatos('conversaciones', conversaciones);
+    } else {
+      localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+    }
   }
 
   return nuevoMensaje;

@@ -18,7 +18,11 @@ function crearNotificacion(paraEmail, tipo, datos) {
   };
   
   notificaciones.push(notificacion);
-  localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('notificaciones', notificaciones);
+  } else {
+    localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
+  }
   
   return notificacion;
 }
@@ -238,6 +242,14 @@ document.addEventListener('DOMContentLoaded', function() {
     busquedaForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
+      // Verificar que el usuario tenga sesión activa
+      const usuarioActual = verificarSesion();
+      if (!usuarioActual) {
+        alert('Por favor, inicia sesión para buscar acompañantes.');
+        window.location.href = 'login.html';
+        return;
+      }
+      
       // Verificar que el usuario no sea acompañante
       if (esAcompanante()) {
         alert('Los acompañantes no pueden buscar otros acompañantes. Esta función está disponible solo para adultos mayores.');
@@ -264,6 +276,14 @@ document.addEventListener('DOMContentLoaded', function() {
     agendarForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      // Verificar que el usuario tenga sesión activa
+      const usuarioActual = verificarSesion();
+      if (!usuarioActual) {
+        alert('Por favor, inicia sesión para agendar una cita.');
+        window.location.href = 'login.html';
+        return;
+      }
+
       // Verificar que el usuario no sea acompañante
       if (esAcompanante()) {
         alert('Los acompañantes no pueden agendar citas. Solo los adultos mayores pueden solicitar servicios de acompañamiento.');
@@ -282,8 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Detectar el tipo de servicio desde el título de la página
       const servicioTipo = document.querySelector('h1').textContent.trim();
       
-      // Obtener información del adulto mayor que está agendando PRIMERO
-      const usuarioActual = verificarSesion();
+      // usuarioActual ya está definido arriba, no necesitamos declararlo de nuevo
       if (!usuarioActual) {
         alert('Error: No hay sesión activa. Por favor inicia sesión.');
         return;
@@ -340,10 +359,14 @@ document.addEventListener('DOMContentLoaded', function() {
         cita.documentosNecesarios = formData.get('documentosNecesarios');
       }
 
-      // Guardar cita
+      // Guardar cita en base de datos compartida
       const citas = JSON.parse(localStorage.getItem('citas') || '[]');
       citas.push(cita);
-      localStorage.setItem('citas', JSON.stringify(citas));
+      if (typeof guardarEnBaseDatos === 'function') {
+        guardarEnBaseDatos('citas', citas);
+      } else {
+        localStorage.setItem('citas', JSON.stringify(citas));
+      }
       
       // Debug: Verificar que la cita se guardó correctamente
       console.log('=== CITA GUARDADA ===');
@@ -386,7 +409,11 @@ document.addEventListener('DOMContentLoaded', function() {
           };
           
           conversaciones.push(nuevaConversacion);
-          localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+          if (typeof guardarEnBaseDatos === 'function') {
+            guardarEnBaseDatos('conversaciones', conversaciones);
+          } else {
+            localStorage.setItem('conversaciones', JSON.stringify(conversaciones));
+          }
         }
       }
 

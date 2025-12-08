@@ -246,10 +246,12 @@ function cargarMisCitas() {
         ` : `
           <span class="sin-chat">Chat no disponible</span>
         `}
+        <button class="btn-cancelar" data-cita-id="${cita.fechaCreacion}">
+          ❌ Cancelar Cita
+        </button>
       </div>
     `;
 
-    // Agregar event listener al botón de chat si existe
     if (tieneConversacion) {
       const btnChat = citaCard.querySelector('.btn-chat');
       if (btnChat) {
@@ -257,8 +259,51 @@ function cargarMisCitas() {
       }
     }
 
+    const btnCancelar = citaCard.querySelector('.btn-cancelar');
+    if (btnCancelar) {
+      btnCancelar.addEventListener('click', () => cancelarCita(cita));
+    }
+
     citasContainer.appendChild(citaCard);
   });
+}
+
+function cancelarCita(cita) {
+  if (!confirm('¿Estás seguro de que deseas cancelar esta cita?')) {
+    return;
+  }
+
+  const citas = JSON.parse(localStorage.getItem('citas') || '[]');
+  const citasActualizadas = citas.filter(c => c.fechaCreacion !== cita.fechaCreacion);
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('citas', citasActualizadas);
+  } else {
+    localStorage.setItem('citas', JSON.stringify(citasActualizadas));
+  }
+
+  const usuarioActual = verificarSesion();
+  const emailAcompanante = cita.acompanante?.email || cita.acompananteId;
+
+  if (emailAcompanante) {
+    crearNotificacion(
+      emailAcompanante,
+      'cita_cancelada',
+      {
+        mensaje: `La cita para ${cita.servicio || 'servicio'} ha sido cancelada`,
+        citaId: cita.fechaCreacion,
+        fecha: cita.fecha,
+        hora: cita.hora,
+        lugar: cita.lugar,
+        tipo: cita.tipo,
+        adultoMayor: cita.adultoMayor,
+        servicio: cita.servicio
+      }
+    );
+  }
+
+  alert('Cita cancelada exitosamente. El acompañante ha sido notificado.');
+  cargarMisCitas();
 }
 
 // Función auxiliar para obtener icono según el servicio

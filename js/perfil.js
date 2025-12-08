@@ -54,9 +54,12 @@ function guardarPerfil(datosActualizados) {
   const indiceUsuario = usuarios.findIndex(u => u.email === usuarioActual.email);
 
   if (indiceUsuario !== -1) {
-    // Actualizar datos del usuario
     usuarios[indiceUsuario] = { ...usuarios[indiceUsuario], ...datosActualizados };
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    if (typeof guardarEnBaseDatos === 'function') {
+      guardarEnBaseDatos('usuarios', usuarios);
+    } else {
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
 
     // Actualizar sesión
     localStorage.setItem('usuarioActual', JSON.stringify({
@@ -102,9 +105,11 @@ function manejarCambioAvatar() {
           const indiceUsuario = usuarios.findIndex(u => u.email === usuarioActual.email);
           if (indiceUsuario !== -1) {
             usuarios[indiceUsuario].avatar = e.target.result;
-            localStorage.setItem('usuarios', JSON.stringify(usuarios));
-            
-            // Actualizar avatar en la barra de navegación usando la función global
+            if (typeof guardarEnBaseDatos === 'function') {
+              guardarEnBaseDatos('usuarios', usuarios);
+            } else {
+              localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            }
             actualizarAvatarGlobal();
           }
         }
@@ -155,13 +160,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('avatarInput').click();
   });
 
-  // Botón para cerrar sesión
   document.getElementById('logoutBtn').addEventListener('click', function() {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
       cerrarSesion();
       alert('Sesión cerrada exitosamente');
       window.location.href = 'login.html';
     }
+  });
+
+  document.getElementById('deleteAccountBtn').addEventListener('click', function() {
+    eliminarCuenta();
   });
 
   // Manejar envío del formulario
@@ -197,4 +205,91 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+function eliminarCuenta() {
+  const usuarioActual = verificarSesion();
+  if (!usuarioActual) {
+    alert('No hay sesión activa');
+    return;
+  }
+
+  const confirmacion = prompt('Esta acción no se puede deshacer. Para confirmar, escribe "ELIMINAR" en mayúsculas:');
+  
+  if (confirmacion !== 'ELIMINAR') {
+    if (confirmacion !== null) {
+      alert('Confirmación incorrecta. La cuenta no ha sido eliminada.');
+    }
+    return;
+  }
+
+  if (!confirm('¿Estás completamente seguro? Esto eliminará tu cuenta, todas tus citas, conversaciones y datos de forma permanente.')) {
+    return;
+  }
+
+  const emailUsuario = usuarioActual.email.toLowerCase();
+  
+  const usuarios = obtenerUsuarios();
+  const usuariosActualizados = usuarios.filter(u => u.email.toLowerCase() !== emailUsuario);
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('usuarios', usuariosActualizados);
+  } else {
+    localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
+  }
+
+  const citas = JSON.parse(localStorage.getItem('citas') || '[]');
+  const citasActualizadas = citas.filter(c => {
+    const emailAcompanante = (c.acompanante?.email || c.acompananteId || '').toLowerCase();
+    const emailAdultoMayor = (c.adultoMayor?.email || '').toLowerCase();
+    return emailAcompanante !== emailUsuario && emailAdultoMayor !== emailUsuario;
+  });
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('citas', citasActualizadas);
+  } else {
+    localStorage.setItem('citas', JSON.stringify(citasActualizadas));
+  }
+
+  const conversaciones = JSON.parse(localStorage.getItem('conversaciones') || '[]');
+  const conversacionesActualizadas = conversaciones.filter(conv => {
+    const emailParticipante1 = (conv.participante1 || '').toLowerCase();
+    const emailParticipante2 = (conv.participante2 || '').toLowerCase();
+    return emailParticipante1 !== emailUsuario && emailParticipante2 !== emailUsuario;
+  });
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('conversaciones', conversacionesActualizadas);
+  } else {
+    localStorage.setItem('conversaciones', JSON.stringify(conversacionesActualizadas));
+  }
+
+  const mensajes = JSON.parse(localStorage.getItem('mensajes') || '[]');
+  const mensajesActualizados = mensajes.filter(m => {
+    const emailRemitente = (m.remitente || '').toLowerCase();
+    return emailRemitente !== emailUsuario;
+  });
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('mensajes', mensajesActualizados);
+  } else {
+    localStorage.setItem('mensajes', JSON.stringify(mensajesActualizados));
+  }
+
+  const notificaciones = JSON.parse(localStorage.getItem('notificaciones') || '[]');
+  const notificacionesActualizadas = notificaciones.filter(n => {
+    const emailPara = (n.paraEmail || '').toLowerCase();
+    return emailPara !== emailUsuario;
+  });
+  
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('notificaciones', notificacionesActualizadas);
+  } else {
+    localStorage.setItem('notificaciones', JSON.stringify(notificacionesActualizadas));
+  }
+
+  cerrarSesion();
+  
+  alert('Tu cuenta ha sido eliminada permanentemente. Gracias por haber usado AbueClick.');
+  window.location.href = 'index.html';
+}
 

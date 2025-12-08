@@ -130,6 +130,9 @@
 .cita-acciones {
   padding-top: 15px;
   border-top: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .btn-chat {
@@ -152,6 +155,30 @@
 }
 
 .btn-chat:active {
+  transform: translateY(0);
+}
+
+.btn-cancelar {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  width: 100%;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancelar:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-cancelar:active {
   transform: translateY(0);
 }
 

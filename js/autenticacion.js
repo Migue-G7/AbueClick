@@ -1,8 +1,62 @@
 // ============================================
 // SISTEMA DE AUTENTICACIÓN BÁSICO
-// NOTA: Esto es solo para prototipos/demostración
-// Para producción, necesitas un backend con base de datos
+// Usa base de datos compartida (database.json)
 // ============================================
+
+// Inicializar usuario administrador si no existe
+async function inicializarAdmin() {
+  // Cargar base de datos compartida primero
+  try {
+    if (typeof cargarBaseDatos === 'function') {
+      await cargarBaseDatos();
+    }
+  } catch (error) {
+    console.warn('No se pudo cargar base de datos compartida, usando localStorage');
+  }
+  
+  const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+  const adminExiste = usuarios.some(user => user.email === 'admin@admin.com');
+  
+  // Si existe el admin antiguo, eliminarlo y crear el nuevo
+  const adminAntiguo = usuarios.findIndex(user => user.email === 'ospinamiguel203@gmail.com');
+  if (adminAntiguo !== -1) {
+    usuarios.splice(adminAntiguo, 1);
+  }
+  
+  if (!adminExiste) {
+    const admin = {
+      email: 'admin@admin.com',
+      password: 'admin123',
+      nombre: 'Administrador',
+      apellido: 'AbueClick',
+      tipoUsuario: 'administrador',
+      fechaRegistro: new Date().toISOString()
+    };
+    
+    usuarios.push(admin);
+    if (typeof guardarEnBaseDatos === 'function') {
+      guardarEnBaseDatos('usuarios', usuarios);
+    } else {
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    }
+  }
+}
+
+// Inicializar admin al cargar
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function() {
+    inicializarAdmin();
+  });
+} else {
+  inicializarAdmin();
+}
+
+// Función para verificar si un usuario es administrador
+function esAdministrador(email) {
+  const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+  const usuario = usuarios.find(user => user.email === email);
+  return usuario && usuario.tipoUsuario === 'administrador';
+}
 
 // Función para guardar un usuario registrado
 function guardarUsuario(datosUsuario) {
@@ -19,8 +73,12 @@ function guardarUsuario(datosUsuario) {
   // Agregar nuevo usuario
   usuarios.push(datosUsuario);
   
-  // Guardar en localStorage
-  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  // Guardar en base de datos compartida
+  if (typeof guardarEnBaseDatos === 'function') {
+    guardarEnBaseDatos('usuarios', usuarios);
+  } else {
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  }
   
   return { exito: true, mensaje: 'Usuario registrado exitosamente' };
 }
@@ -43,13 +101,15 @@ function verificarLogin(email, password) {
   }
   
   // Guardar sesión actual
+  const esAdmin = esAdministrador(usuario.email);
   localStorage.setItem('usuarioActual', JSON.stringify({
     email: usuario.email,
     nombre: usuario.nombre,
-    apellido: usuario.apellido
+    apellido: usuario.apellido,
+    esAdministrador: esAdmin
   }));
   
-  return { exito: true, mensaje: 'Inicio de sesión exitoso', usuario: usuario };
+  return { exito: true, mensaje: 'Inicio de sesión exitoso', usuario: usuario, esAdministrador: esAdmin };
 }
 
 // Función para verificar si hay una sesión activa
@@ -63,8 +123,9 @@ function cerrarSesion() {
   localStorage.removeItem('usuarioActual');
 }
 
-// Función para obtener todos los usuarios (solo para desarrollo)
+// Función para obtener todos los usuarios (desde base de datos compartida)
 function obtenerUsuarios() {
+  // Siempre obtener desde localStorage (que se sincroniza con database.json)
   return JSON.parse(localStorage.getItem('usuarios') || '[]');
 }
 

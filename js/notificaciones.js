@@ -43,7 +43,7 @@ function cargarNotificaciones() {
     });
 
     let detallesHTML = '';
-    if (notificacion.tipo === 'nueva_cita' && notificacion.datos) {
+    if ((notificacion.tipo === 'nueva_cita' || notificacion.tipo === 'cita_cancelada') && notificacion.datos) {
       detallesHTML = `
         <div class="notificacion-detalles">
           <p><strong>Servicio:</strong> ${notificacion.datos.servicio || 'Acompañamiento'}</p>
