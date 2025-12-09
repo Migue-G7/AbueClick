@@ -230,12 +230,18 @@
           ? calcularEdad(usuario.fechaNacimiento) 
           : 'No especificada';
         
-        const avatar = usuario && usuario.avatar 
-          ? usuario.avatar 
-          : 'resources/perfiles/mujer.png';
+        // Obtener avatar del usuario si existe, sino usar imagen por defecto
+        let avatarSrc = 'resources/perfiles/mujer.png';
+        if (usuario && usuario.avatar) {
+          // Si el avatar es una URL base64 o una ruta válida
+          avatarSrc = usuario.avatar;
+        }
         
         tarjeta.innerHTML = `
-          <img src="${avatar}" alt="${acompanante.nombre}" class="foto-perfil" onerror="this.src='resources/perfiles/mujer.png'">
+          ${usuario && usuario.avatar 
+            ? `<img src="${avatarSrc}" alt="${acompanante.nombre}" class="foto-perfil" onerror="this.src='resources/perfiles/mujer.png'; this.onerror=null;">`
+            : `<img src="${avatarSrc}" alt="${acompanante.nombre}" class="foto-perfil">`
+          }
           <div class="info-perfil">
             <h2 class="nombre-perfil">${acompanante.nombre}</h2>
             <div class="meta-perfil">
@@ -246,11 +252,71 @@
             <p class="especificacion-perfil"><strong>Especialidad:</strong> ${acompanante.especialidad}</p>
             ${acompanante.ciudad ? `<p class="especificacion-perfil"><strong>Ciudad:</strong> ${acompanante.ciudad.charAt(0).toUpperCase() + acompanante.ciudad.slice(1)}</p>` : ''}
             ${acompanante.telefono ? `<p class="especificacion-perfil"><strong>Teléfono:</strong> ${acompanante.telefono}</p>` : ''}
-            <button class="boton-contacto" onclick="window.location.href='servicio-cita-medica.html'">Ver Perfil</button>
+            <button class="boton-contacto" onclick="seleccionarServicio('${acompanante.id || acompanante.email}')">Ver Perfil</button>
           </div>
         `;
         
         contenedor.appendChild(tarjeta);
+      });
+    }
+
+    // Función para mostrar modal de selección de servicio
+    function seleccionarServicio(acompananteId) {
+      const modal = document.createElement('div');
+      modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 10000;';
+      
+      const modalContent = document.createElement('div');
+      modalContent.style.cssText = 'background: white; padding: 40px; border-radius: 12px; max-width: 500px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
+      
+      modalContent.innerHTML = `
+        <h2 style="margin-top: 0; color: #52a6c4; font-size: 28px; margin-bottom: 20px; text-align: center;">Selecciona el servicio</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Elige el tipo de servicio que necesitas:</p>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <button onclick="window.location.href='servicio-cita-medica.html'" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #fff980 0%, #ffffff 100%); border: 2px solid #faba4d; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 18px; font-weight: 600; color: #333; width: 100%;">
+            <img src="resources/icons/atencion-medica.png" alt="Cita Médica" style="width: 40px; height: 40px;">
+            <span>Cita Médica</span>
+          </button>
+          <button onclick="window.location.href='servicio-eventos.html'" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #fff980 0%, #ffffff 100%); border: 2px solid #faba4d; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 18px; font-weight: 600; color: #333; width: 100%;">
+            <img src="resources/icons/calendario.png" alt="Eventos" style="width: 40px; height: 40px;">
+            <span>Eventos</span>
+          </button>
+          <button onclick="window.location.href='servicio-compras.html'" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #fff980 0%, #ffffff 100%); border: 2px solid #faba4d; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 18px; font-weight: 600; color: #333; width: 100%;">
+            <img src="resources/icons/carrito-de-compras.png" alt="Compras" style="width: 40px; height: 40px;">
+            <span>Compras</span>
+          </button>
+          <button onclick="window.location.href='servicio-tramites.html'" style="display: flex; align-items: center; gap: 15px; padding: 20px; background: linear-gradient(135deg, #fff980 0%, #ffffff 100%); border: 2px solid #faba4d; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-size: 18px; font-weight: 600; color: #333; width: 100%;">
+            <img src="resources/icons/contrato.png" alt="Trámites" style="width: 40px; height: 40px;">
+            <span>Trámites</span>
+          </button>
+        </div>
+        <button onclick="this.closest('div[style*=\\"position: fixed\\"]').remove()" style="margin-top: 25px; width: 100%; padding: 12px; background: #e0e0e0; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; color: #666; transition: all 0.3s;">
+          Cancelar
+        </button>
+      `;
+      
+      // Agregar efectos hover a los botones
+      const botones = modalContent.querySelectorAll('button[onclick*="servicio"]');
+      botones.forEach(btn => {
+        btn.onmouseenter = function() {
+          this.style.transform = 'translateY(-2px)';
+          this.style.boxShadow = '0 4px 12px rgba(82, 166, 196, 0.3)';
+          this.style.borderColor = '#52a6c4';
+        };
+        btn.onmouseleave = function() {
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = 'none';
+          this.style.borderColor = '#faba4d';
+        };
+      });
+      
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+      
+      // Cerrar al hacer clic fuera del modal
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.remove();
+        }
       });
     }
 
