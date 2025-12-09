@@ -131,45 +131,40 @@ function buscarAcompanantes(filtros) {
 // Función para mostrar resultados de búsqueda
 function mostrarResultados(acompanantes) {
   const resultadosDiv = document.getElementById('resultadosBusqueda');
-  const gridDiv = document.getElementById('acompanantesGrid');
+  const cuadriculaDiv = document.getElementById('cuadriculaAcompanantes');
   const selectAcompanante = document.getElementById('acompananteSeleccionado');
 
-  if (!resultadosDiv || !gridDiv) return;
+  if (!resultadosDiv || !cuadriculaDiv) return;
 
   resultadosDiv.style.display = 'block';
-  gridDiv.innerHTML = '';
+  cuadriculaDiv.innerHTML = '';
   selectAcompanante.innerHTML = '<option value="">Seleccione un acompañante</option>';
 
   if (acompanantes.length === 0) {
-    gridDiv.innerHTML = '<p style="font-size: 18px; color: #666; grid-column: 1 / -1;">No se encontraron acompañantes con los criterios seleccionados.</p>';
+    cuadriculaDiv.innerHTML = '<p style="font-size: 18px; color: #666; grid-column: 1 / -1;">No se encontraron acompañantes con los criterios seleccionados.</p>';
     return;
   }
 
   acompanantes.forEach(acompanante => {
-    // Crear tarjeta de acompañante
-    const card = document.createElement('div');
-    card.className = 'acompanante-card';
-    card.dataset.id = acompanante.id;
-    card.innerHTML = `
-      <div class="acompanante-nombre">${acompanante.nombre}</div>
-      <div class="acompanante-info">Experiencia: ${acompanante.experiencia}</div>
-      <div class="acompanante-info">Ciudad: ${acompanante.ciudad ? acompanante.ciudad.charAt(0).toUpperCase() + acompanante.ciudad.slice(1) : 'No especificada'}</div>
-      <div class="acompanante-especialidad">${acompanante.especialidad}</div>
-      ${acompanante.telefono ? `<div class="acompanante-info">Teléfono: ${acompanante.telefono}</div>` : ''}
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'tarjeta-acompanante';
+    tarjeta.dataset.id = acompanante.id;
+    tarjeta.innerHTML = `
+      <div class="nombre-acompanante">${acompanante.nombre}</div>
+      <div class="info-acompanante">Experiencia: ${acompanante.experiencia}</div>
+      <div class="info-acompanante">Ciudad: ${acompanante.ciudad ? acompanante.ciudad.charAt(0).toUpperCase() + acompanante.ciudad.slice(1) : 'No especificada'}</div>
+      <div class="especialidad-acompanante">${acompanante.especialidad}</div>
+      ${acompanante.telefono ? `<div class="info-acompanante">Teléfono: ${acompanante.telefono}</div>` : ''}
       <p style="margin-top: 10px; font-size: 16px; color: #666;">${acompanante.descripcion}</p>
     `;
 
-    // Agregar evento de clic para seleccionar
-    card.addEventListener('click', function() {
-      // Remover selección anterior
-      document.querySelectorAll('.acompanante-card').forEach(c => c.classList.remove('selected'));
-      // Agregar selección actual
-      card.classList.add('selected');
-      // Actualizar select
+    tarjeta.addEventListener('click', function() {
+      document.querySelectorAll('.tarjeta-acompanante').forEach(t => t.classList.remove('seleccionada'));
+      tarjeta.classList.add('seleccionada');
       selectAcompanante.value = acompanante.id;
     });
 
-    gridDiv.appendChild(card);
+    cuadriculaDiv.appendChild(tarjeta);
 
     // Agregar opción al select
     const option = document.createElement('option');
@@ -235,11 +230,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Configurar página según tipo de usuario
   configurarPaginaServicio();
   
-  const busquedaForm = document.getElementById('busquedaForm');
-  const agendarForm = document.getElementById('agendarForm');
+  const formularioBusqueda = document.getElementById('formularioBusqueda');
+  const formularioAgendar = document.getElementById('formularioAgendar');
 
-  if (busquedaForm) {
-    busquedaForm.addEventListener('submit', function(e) {
+  if (formularioBusqueda) {
+    formularioBusqueda.addEventListener('submit', function(e) {
       e.preventDefault();
       
       // Verificar que el usuario tenga sesión activa
@@ -272,8 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Manejar agendamiento de cita
-  if (agendarForm) {
-    agendarForm.addEventListener('submit', function(e) {
+  if (formularioAgendar) {
+    formularioAgendar.addEventListener('submit', function(e) {
       e.preventDefault();
 
       // Verificar que el usuario tenga sesión activa
@@ -290,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      const formData = new FormData(agendarForm);
+      const formData = new FormData(formularioAgendar);
       const acompananteId = formData.get('acompananteSeleccionado');
       const observaciones = formData.get('observaciones') || '';
 
@@ -436,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       alert('¡Cita agendada exitosamente! El acompañante recibirá una notificación. Serás redirigido al inicio.');
-      agendarForm.reset();
+      formularioAgendar.reset();
       const resultadosDiv = document.getElementById('resultadosBusqueda');
       if (resultadosDiv) {
         resultadosDiv.style.display = 'none';

@@ -9,7 +9,7 @@ function cargarNotificaciones() {
   }
 
   const notificaciones = obtenerNotificaciones(usuarioActual.email);
-  const listaDiv = document.getElementById('notificacionesList');
+  const listaDiv = document.getElementById('listaNotificaciones');
   const sinNotificacionesDiv = document.getElementById('sinNotificaciones');
 
   if (!listaDiv) return;
@@ -64,7 +64,7 @@ function cargarNotificaciones() {
           <div class="notificacion-titulo">${notificacion.datos?.mensaje || 'Nueva notificación'}</div>
           <div class="notificacion-fecha">${fechaFormateada}</div>
         </div>
-        <button class="btn-marcar-leida" onclick="marcarComoLeida('${notificacion.id}')">Marcar como leída</button>
+        <button class="boton-marcar-leida" onclick="marcarComoLeida('${notificacion.id}')">Marcar como leída</button>
       </div>
       <div class="notificacion-mensaje">
         ${notificacion.datos?.mensaje || 'Tienes una nueva notificación'}
@@ -89,7 +89,7 @@ function actualizarBadgeNotificaciones() {
   if (!usuarioActual) return;
 
   const numero = obtenerNumeroNotificaciones(usuarioActual.email);
-  const badge = document.getElementById('notificationBadge');
+  const badge = document.getElementById('insigniaNotificacion');
 
   if (badge) {
     if (numero > 0) {

@@ -16,6 +16,17 @@ let syncTimer = null;
  * @returns {Promise<Object>} Datos de la base de datos
  */
 async function cargarBaseDatos() {
+  if (typeof cargarDesdeFirebase === 'function') {
+    try {
+      const datos = await cargarDesdeFirebase();
+      if (datos && Object.keys(datos).length > 0) {
+        return datos;
+      }
+    } catch (error) {
+      console.warn('Error al cargar desde Firebase, intentando JSON local:', error);
+    }
+  }
+
   try {
     const response = await fetch(DATABASE_FILE);
     if (!response.ok) {
@@ -26,7 +37,6 @@ async function cargarBaseDatos() {
     const datos = await response.json();
     console.log('✅ Base de datos cargada desde JSON compartido');
     
-    // Sincronizar con localStorage
     sincronizarConLocalStorage(datos);
     
     return datos;
@@ -195,15 +205,16 @@ async function importarBaseDatos(archivo) {
   });
 }
 
-/**
- * Guardar datos en localStorage y marcar para sincronización
- * @param {string} clave Clave de localStorage
- * @param {Array|Object} datos Datos a guardar
- */
 function guardarEnBaseDatos(clave, datos) {
   localStorage.setItem(clave, JSON.stringify(datos));
   localStorage.setItem('ultimaActualizacion', new Date().toISOString());
   localStorage.setItem('pendienteSincronizacion', 'true');
+  
+  if (typeof guardarEnBaseDatosFirebase === 'function') {
+    guardarEnBaseDatosFirebase(clave, datos).catch(error => {
+      console.warn('Error al guardar en Firebase, usando solo localStorage:', error);
+    });
+  }
   
   console.log(`✅ Datos guardados en ${clave}`);
 }
@@ -303,11 +314,18 @@ function guardarCitaCompartida(cita) {
 // INICIALIZACIÓN
 // ============================================
 
-// Inicializar sincronización automática al cargar el script
 if (typeof window !== 'undefined') {
   document.addEventListener('DOMContentLoaded', function() {
-    // Esperar un poco antes de iniciar la sincronización
-    setTimeout(() => {
+    setTimeout(async () => {
+      if (typeof inicializarFirebase === 'function') {
+        await inicializarFirebase();
+        
+        if (typeof suscribirseACambiosEnTiempoReal === 'function') {
+          suscribirseACambiosEnTiempoReal();
+          console.log('✅ Escucha en tiempo real activada');
+        }
+      }
+      
       iniciarSincronizacionAutomatica();
     }, 1000);
   });

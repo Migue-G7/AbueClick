@@ -17,33 +17,33 @@
   </style>
 </head>
 <body>
-  <div class="site">
-    <header id="navbar">
-      <div class="nav-left">
-        <div class="brand">
-          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+  <div class="sitio">
+    <header id="barra-navegacion">
+      <div class="nav-izquierda">
+        <div class="marca">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="logo-navegacion">
         </div>
         <nav>
-          <ul class="nav-menu">
+          <ul class="menu-navegacion">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
-            <li><a href="#footer">Contacto</a></li>
+            <li><a href="#pie-pagina">Contacto</a></li>
           </ul>
         </nav>
       </div>
-      <div class="nav-right">
-        <form class="search-form" role="search" onsubmit="return false;">
-          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+      <div class="nav-derecha">
+        <form class="formulario-busqueda" role="search" onsubmit="return false;">
+          <input class="entrada-busqueda" type="search" placeholder="Buscar..." aria-label="Buscar">
         </form>
-        <a href="notificaciones.html" class="notifications-btn" aria-label="Notificaciones" title="Notificaciones" id="notificationsLink">
-          <span class="notification-icon">🔔</span>
-          <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+        <a href="notificaciones.html" class="boton-notificaciones" aria-label="Notificaciones" title="Notificaciones" id="enlaceNotificaciones">
+          <span class="icono-notificacion">🔔</span>
+          <span class="insignia-notificacion" id="insigniaNotificacion" style="display: none;">0</span>
         </a>
-        <a href="chat.html" class="chat-btn" aria-label="Chat" title="Chat">
-          <span class="chat-icon">💬</span>
+        <a href="chat.html" class="boton-chat" aria-label="Chat" title="Chat">
+          <span class="icono-chat">💬</span>
         </a>
-        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
-          <span class="avatar-circle" id="userAvatar">AC</span>
+        <a href="perfil.html" class="boton-perfil" aria-label="Perfil" title="Perfil">
+          <span class="circulo-avatar" id="avatarUsuario">AC</span>
         </a>
       </div>
     </header>
@@ -78,9 +78,9 @@
         <!-- Búsqueda de Acompañante -->
         <section class="busqueda-acompanante">
           <h2>Buscar Acompañante Ideal</h2>
-          <form class="busqueda-form" id="busquedaForm">
-            <div class="form-row">
-              <div class="form-group">
+          <form class="formulario-busqueda" id="formularioBusqueda">
+            <div class="fila-formulario">
+              <div class="grupo-formulario">
                 <label for="ciudad">Ciudad</label>
                 <select id="ciudad" name="ciudad" required>
                   <option value="">Seleccione una ciudad</option>
@@ -90,7 +90,7 @@
                   <option value="barranquilla">Barranquilla</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="grupo-formulario">
                 <label for="experiencia">Experiencia mínima</label>
                 <select id="experiencia" name="experiencia">
                   <option value="">Cualquiera</option>
@@ -101,8 +101,8 @@
                 </select>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
+            <div class="fila-formulario">
+              <div class="grupo-formulario">
                 <label for="tipoTramite">Tipo de trámite</label>
                 <select id="tipoTramite" name="tipoTramite">
                   <option value="">Cualquiera</option>
@@ -112,7 +112,7 @@
                   <option value="documentos">Documentos personales</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="grupo-formulario">
                 <label for="disponibilidad">Disponibilidad</label>
                 <select id="disponibilidad" name="disponibilidad">
                   <option value="">Cualquiera</option>
@@ -123,13 +123,13 @@
                 </select>
               </div>
             </div>
-            <button type="submit" class="btn-buscar">Buscar Acompañantes</button>
+            <button type="submit" class="boton-buscar">Buscar Acompañantes</button>
           </form>
 
           <!-- Resultados de búsqueda -->
           <div class="resultados-busqueda" id="resultadosBusqueda" style="display: none;">
             <h3>Acompañantes Disponibles</h3>
-            <div class="acompanantes-grid" id="acompanantesGrid">
+            <div class="cuadricula-acompanantes" id="cuadriculaAcompanantes">
               <!-- Los resultados se mostrarán aquí -->
             </div>
           </div>
@@ -138,20 +138,20 @@
         <!-- Agendar Cita -->
         <section class="agendar-cita">
           <h2>Agendar Acompañamiento para Trámite</h2>
-          <form class="agendar-form" id="agendarForm">
-            <div class="form-group">
+          <form class="formulario-agendar" id="formularioAgendar">
+            <div class="grupo-formulario">
               <label for="fechaTramite">Fecha para el trámite</label>
               <input type="date" id="fechaTramite" name="fechaTramite" required>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="horaTramite">Hora preferida</label>
               <input type="time" id="horaTramite" name="horaTramite" required>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="entidadTramite">Entidad o lugar del trámite</label>
               <input type="text" id="entidadTramite" name="entidadTramite" placeholder="Ej: Registraduría, Banco de Bogotá, EPS" required>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="tipoTramiteAgendar">Tipo de trámite</label>
               <select id="tipoTramiteAgendar" name="tipoTramiteAgendar" required>
                 <option value="">Seleccione el tipo</option>
@@ -164,21 +164,21 @@
                 <option value="otro">Otro</option>
               </select>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="documentosNecesarios">Documentos necesarios (opcional)</label>
               <textarea id="documentosNecesarios" name="documentosNecesarios" rows="4" placeholder="Liste los documentos que necesita llevar..."></textarea>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="observaciones">Observaciones adicionales</label>
               <textarea id="observaciones" name="observaciones" rows="4" placeholder="Información adicional sobre el trámite..."></textarea>
             </div>
-            <div class="form-group">
+            <div class="grupo-formulario">
               <label for="acompananteSeleccionado">Acompañante seleccionado</label>
               <select id="acompananteSeleccionado" name="acompananteSeleccionado">
                 <option value="">Primero busque un acompañante</option>
               </select>
             </div>
-            <button type="submit" class="btn-agendar">Agendar Acompañamiento</button>
+            <button type="submit" class="boton-agendar">Agendar Acompañamiento</button>
           </form>
         </section>
       </div>

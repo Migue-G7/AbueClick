@@ -132,25 +132,25 @@ function cargarMisCitas() {
   const usuario = usuarios.find(u => u.email === usuarioActual?.email);
   const esAcompanante = usuario && (usuario.tipoUsuario === 'acompanante' || usuario.tipoUsuario === 'compania');
   
-  const citasContainer = document.getElementById('citasContainer');
+  const contenedorCitas = document.getElementById('contenedorCitas');
   const sinCitas = document.getElementById('sinCitas');
 
-  if (!citasContainer) return;
+  if (!contenedorCitas) return;
 
   if (misCitas.length === 0) {
-    citasContainer.style.display = 'none';
+    contenedorCitas.style.display = 'none';
     if (sinCitas) {
       sinCitas.style.display = 'block';
     }
     return;
   }
 
-  citasContainer.style.display = 'grid';
+  contenedorCitas.style.display = 'grid';
   if (sinCitas) {
     sinCitas.style.display = 'none';
   }
 
-  citasContainer.innerHTML = '';
+  contenedorCitas.innerHTML = '';
 
   misCitas.forEach(cita => {
     const citaCard = document.createElement('div');
@@ -240,31 +240,31 @@ function cargarMisCitas() {
 
       <div class="cita-acciones">
         ${tieneConversacion ? `
-          <button class="btn-chat" data-cita-id="${cita.fechaCreacion}">
+          <button class="boton-chat" data-cita-id="${cita.fechaCreacion}">
             💬 Iniciar Chat
           </button>
         ` : `
           <span class="sin-chat">Chat no disponible</span>
         `}
-        <button class="btn-cancelar" data-cita-id="${cita.fechaCreacion}">
+        <button class="boton-cancelar" data-cita-id="${cita.fechaCreacion}">
           ❌ Cancelar Cita
         </button>
       </div>
     `;
 
     if (tieneConversacion) {
-      const btnChat = citaCard.querySelector('.btn-chat');
-      if (btnChat) {
-        btnChat.addEventListener('click', () => abrirChatDesdeCita(cita));
+      const botonChat = citaCard.querySelector('.boton-chat');
+      if (botonChat) {
+        botonChat.addEventListener('click', () => abrirChatDesdeCita(cita));
       }
     }
 
-    const btnCancelar = citaCard.querySelector('.btn-cancelar');
-    if (btnCancelar) {
-      btnCancelar.addEventListener('click', () => cancelarCita(cita));
+    const botonCancelar = citaCard.querySelector('.boton-cancelar');
+    if (botonCancelar) {
+      botonCancelar.addEventListener('click', () => cancelarCita(cita));
     }
 
-    citasContainer.appendChild(citaCard);
+    contenedorCitas.appendChild(citaCard);
   });
 }
 

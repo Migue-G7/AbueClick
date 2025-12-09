@@ -11,14 +11,13 @@ body {
     color: #111;
 }
 
-/* Estructura principal: navbar, contenido (sidebar+main) y footer */
-.site {
+.sitio {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
 
-header#navbar {
+header#barra-navegacion {
   grid-row: 1;
   display: flex;
   align-items: center;
@@ -31,18 +30,18 @@ header#navbar {
   position: relative;
 }
 
-.navbar .brand {
+.barra-navegacion .marca {
   display: flex;
   align-items: center;
   gap: 8px
 }
 
-.nav-logo {
+.logo-navegacion {
   width: 100px;
   height: auto
 }
 
-.nav-menu {
+.menu-navegacion {
   list-style: none;
   display: flex;
   gap: 12px;
@@ -50,7 +49,7 @@ header#navbar {
   padding: 0
 }
 
-.nav-menu a {
+.menu-navegacion a {
   text-decoration: none;
   color: #222;
   padding: 6px 8px;
@@ -60,20 +59,19 @@ header#navbar {
   transition: all 0.3s ease;
 }
 
-.nav-menu a:hover {
+.menu-navegacion a:hover {
   background: #f5f5f5;
   color: #52a6c4;
 }
 
-/* Layout for navbar center */
-.nav-center {
+.nav-centro {
   display: flex;
   align-items: center;
   gap: 18px;
   justify-content: center;
 }
 
-.container {
+.contenedor {
     grid-row: 2;
     background: white;
     border-radius: 12px;
@@ -87,7 +85,7 @@ header#navbar {
     border: 1px solid #a2f0ff;
 }
 
-.image-section {
+.seccion-imagen {
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
     background-size: cover;
     background-position: center;
@@ -98,14 +96,14 @@ header#navbar {
     overflow: hidden;
 }
 
-.image-section img {
+.seccion-imagen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.form-section {
+.seccion-formulario {
     padding: 50px 40px;
     display: flex;
     flex-direction: column;
@@ -148,7 +146,7 @@ h2 {
     font-weight: bold;
 }
 
-.form-group {
+.grupo-formulario {
     margin-bottom: 20px;
 }
 
@@ -181,22 +179,22 @@ input:focus {
     outline: 2px solid #87d7eb;
 }
 
-.forgot-password {
+.olvido-contraseña {
     text-align: right;
     margin-bottom: 20px;
 }
 
-.forgot-password a {
+.olvido-contraseña a {
     color: #1a237e;
     text-decoration: none;
     font-size: 30px;
 }
 
-.forgot-password a:hover {
+.olvido-contraseña a:hover {
     text-decoration: underline;
 }
 
-.btn {
+.boton {
     width: 100%;
     padding: 14px;
     border: none;
@@ -213,67 +211,65 @@ input:focus {
     box-sizing: border-box;
 }
 
-.btn:hover {
+.boton:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn:active {
+.boton:active {
     transform: translateY(0);
 }
 
-.btn-primary {
+.boton-primario {
     background-color: #52a6c4;
     color: white;
 }
 
-.btn-primary:hover {
+.boton-primario:hover {
     background-color: #52a6c4;
 }
 
-.btn-secondary {
+.boton-secundario {
     background-color: #faba4d;
     color: white;
 }
 
-.btn-secondary:hover {
+.boton-secundario:hover {
     background-color: #faba4d;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
-  .nav-menu {
+  .menu-navegacion {
     gap: 8px
   }
 
-  .nav-logo {
+  .logo-navegacion {
     width: 36px
   }
 }
 
 @media (max-width: 768px) {
-    .container {
+    .contenedor {
         grid-template-columns: 1fr;
     }
     
-    .image-section {
+    .seccion-imagen {
         min-height: 250px;
     }
     
-    .form-section {
+    .seccion-formulario {
         padding: 30px 20px;
     }
 }
 
-/* Footer Styles */
-footer#footer {
+footer#pie-pagina {
   background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
   color: white;
   padding: 50px 40px 20px;
   margin-top: auto;
 }
 
-.footer-container {
+.contenedor-pie-pagina {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
@@ -282,12 +278,12 @@ footer#footer {
   margin-bottom: 30px;
 }
 
-.footer-column {
+.columna-pie-pagina {
   display: flex;
   flex-direction: column;
 }
 
-.footer-title {
+.titulo-pie-pagina {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 700;
@@ -297,7 +293,7 @@ footer#footer {
   letter-spacing: 0.5px;
 }
 
-.footer-subtitle {
+.subtitulo-pie-pagina {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -307,20 +303,20 @@ footer#footer {
   text-transform: uppercase;
 }
 
-.footer-contact-item {
+.item-contacto-pie-pagina {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 15px;
 }
 
-.footer-icon {
+.icono-pie-pagina {
   font-size: 24px;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
-.footer-label {
+.etiqueta-pie-pagina {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 500;
@@ -328,7 +324,7 @@ footer#footer {
   margin: 0 0 4px 0;
 }
 
-.footer-value {
+.valor-pie-pagina {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -337,17 +333,17 @@ footer#footer {
   line-height: 1.5;
 }
 
-.footer-links {
+.enlaces-pie-pagina {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-links li {
+.enlaces-pie-pagina li {
   margin-bottom: 15px;
 }
 
-.footer-links a {
+.enlaces-pie-pagina a {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   color: white;
@@ -355,19 +351,19 @@ footer#footer {
   transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
+.enlaces-pie-pagina a:hover {
   color: #fff980;
   text-decoration: underline;
 }
 
-.footer-social {
+.redes-pie-pagina {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.social-link {
+.enlace-red-social {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   color: white;
@@ -375,22 +371,22 @@ footer#footer {
   transition: color 0.3s ease;
 }
 
-.social-link:hover {
+.enlace-red-social:hover {
   color: #fff980;
   text-decoration: underline;
 }
 
-.footer-update {
+.actualizacion-pie-pagina {
   margin-top: auto;
 }
 
-.footer-bottom {
+.fondo-pie-pagina {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 20px;
   text-align: center;
 }
 
-.footer-bottom p {
+.fondo-pie-pagina p {
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   color: white;
@@ -398,18 +394,18 @@ footer#footer {
 }
 
 @media (max-width: 768px) {
-  .footer-container {
+  .contenedor-pie-pagina {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
 }
 
 @media (max-width: 480px) {
-  footer#footer {
+  footer#pie-pagina {
     padding: 40px 20px 15px;
   }
 
-  .footer-container {
+  .contenedor-pie-pagina {
     grid-template-columns: 1fr;
     gap: 30px;
   }

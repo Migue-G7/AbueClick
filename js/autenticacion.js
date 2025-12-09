@@ -139,7 +139,7 @@ function actualizarAvatarGlobal() {
   
   if (usuario) {
     // Buscar todos los avatares en la página
-    const avatares = document.querySelectorAll('#userAvatar, #userAvatarNav, .avatar-circle');
+    const avatares = document.querySelectorAll('#avatarUsuario, #avatarUsuarioNav, .circulo-avatar');
     
     avatares.forEach(avatar => {
       if (usuario.avatar) {

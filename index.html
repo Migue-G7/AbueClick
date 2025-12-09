@@ -19,137 +19,129 @@
 
 <body>
   <!-- Estructura convencional y escalable sin partials -->
-  <div class="site">
-    <!-- NAVBAR: editar aquí el menú superior -->
-    <header id="navbar">
-      <div class="nav-left">
-        <div class="brand">
-          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+  <div class="sitio">
+    <header id="barra-navegacion">
+      <div class="nav-izquierda">
+        <div class="marca">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="logo-navegacion">
         </div>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+        <button class="boton-menu-movil" id="botonMenuMovil">☰</button>
         <nav>
-            <ul class="nav-menu">
+            <ul class="menu-navegacion">
               <li><a href="index.html">Inicio</a></li>
               <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
               <li id="navMisCitas" style="display: none;"><a href="mis-citas.html">Mis Citas</a></li>
-              <li><a href="#footer">Contacto</a></li>
+              <li><a href="#pie-pagina">Contacto</a></li>
             </ul>
         </nav>
       </div>
-      <div class="mobile-menu" id="mobileMenu">
+      <div class="menu-movil" id="menuMovil">
         <ul>
           <li><a href="index.html">Inicio</a></li>
           <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
           <li id="navMisCitasMobile" style="display: none;"><a href="mis-citas.html">Mis Citas</a></li>
-          <li><a href="#footer">Contacto</a></li>
+          <li><a href="#pie-pagina">Contacto</a></li>
         </ul>
       </div>
 
-      <!-- Right side: search + profile (aligned right) -->
-      <div class="nav-right">
-        <form class="search-form" role="search" onsubmit="return false;">
-          <input class="search-input" type="search" placeholder="Buscar..." aria-label="Buscar">
+      <div class="nav-derecha">
+        <form class="formulario-busqueda" role="search" onsubmit="return false;">
+          <input class="entrada-busqueda" type="search" placeholder="Buscar..." aria-label="Buscar">
         </form>
-        <a href="notificaciones.html" class="notifications-btn" aria-label="Notificaciones" title="Notificaciones" id="notificationsLink">
-          <span class="notification-icon">🔔</span>
-          <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+        <a href="notificaciones.html" class="boton-notificaciones" aria-label="Notificaciones" title="Notificaciones" id="enlaceNotificaciones">
+          <span class="icono-notificacion">🔔</span>
+          <span class="insignia-notificacion" id="insigniaNotificacion" style="display: none;">0</span>
         </a>
-        <a href="chat.html" class="chat-btn" aria-label="Chat" title="Chat">
-          <span class="chat-icon">💬</span>
+        <a href="chat.html" class="boton-chat" aria-label="Chat" title="Chat">
+          <span class="icono-chat">💬</span>
         </a>
-        <!-- Avatar circular: reemplaza 'AC' por las iniciales del usuario o usa una imagen en su lugar -->
-        <a href="perfil.html" class="profile-btn" aria-label="Perfil" title="Perfil">
-          <span class="avatar-circle" id="userAvatar">AC</span>
+        <a href="perfil.html" class="boton-perfil" aria-label="Perfil" title="Perfil">
+          <span class="circulo-avatar" id="avatarUsuario">AC</span>
         </a>
       </div>
     </header>
 
-    <!-- CONTENIDO: sidebar + main -->
-    <div class="content">
-      <!-- SIDEBAR: enlaces y navegación secundaria -->
-      <aside id="sidebar">
+    <div class="contenido">
+      <aside id="barra-lateral">
         <h2>Seleccione el servicio que deseas:</h2>
-        <ul class="sidebar-list">
+        <ul class="lista-barra-lateral">
             <li>
               <a href="servicio-cita-medica.html">
-                <img src="resources/icons/atencion-medica.png" alt="" class="sidebar-icon">
-                <span class="sidebar-label">Cita Medica</span>
+                <img src="resources/icons/atencion-medica.png" alt="" class="icono-barra-lateral">
+                <span class="etiqueta-barra-lateral">Cita Medica</span>
               </a>
             </li>
             <li>
               <a href="servicio-eventos.html">
-                <img src="resources/icons/calendario.png" alt="Calendario" class="sidebar-icon">
-                <span class="sidebar-label">Eventos</span>
+                <img src="resources/icons/calendario.png" alt="Calendario" class="icono-barra-lateral">
+                <span class="etiqueta-barra-lateral">Eventos</span>
               </a>
             </li>
             <li>
               <a href="servicio-compras.html">
-                <img src="resources/icons/carrito-de-compras.png" alt="carrito-de-compras" class="sidebar-icon">
-                <span class="sidebar-label">Compras</span>
+                <img src="resources/icons/carrito-de-compras.png" alt="carrito-de-compras" class="icono-barra-lateral">
+                <span class="etiqueta-barra-lateral">Compras</span>
               </a>
             </li>
             <li>
               <a href="servicio-tramites.html">
-                <img src="resources/icons/contrato.png" alt="Tramites" class="sidebar-icon">
-                <span class="sidebar-label">Tramites</span>
+                <img src="resources/icons/contrato.png" alt="Tramites" class="icono-barra-lateral">
+                <span class="etiqueta-barra-lateral">Tramites</span>
               </a>
             </li>
         </ul>
       </aside>
 
-      <!-- MAIN: contenido principal de la página -->
-      <main id="main-content">
-        <section class="main-section">
+      <main id="contenido-principal">
+        <section class="seccion-principal">
           <h1>Bienvenido a AbueClick</h1>
           <p>Conoce algunos de nuestros acompañantes disponibles</p>
 
-          <!-- Contenedor de acompañantes -->
-          <div id="acompanantesContainer" class="acompanantes-grid">
+          <div id="contenedorAcompanantes" class="cuadricula-acompanantes">
             <!-- Los acompañantes se cargarán dinámicamente aquí -->
           </div>
         </section>
       </main>
     </div>
 
-    <!-- FOOTER: información de pie de página, logo y enlaces -->
-    <footer id="footer">
-      <div class="footer-container">
-        <div class="footer-column">
-          <h3 class="footer-title">ABUECLICK</h3>
-          <h4 class="footer-subtitle">CONTÁCTANOS</h4>
-          <div class="footer-contact-item">
-            <span class="footer-icon">📞</span>
+    <footer id="pie-pagina">
+      <div class="contenedor-pie-pagina">
+        <div class="columna-pie-pagina">
+          <h3 class="titulo-pie-pagina">ABUECLICK</h3>
+          <h4 class="subtitulo-pie-pagina">CONTÁCTANOS</h4>
+          <div class="item-contacto-pie-pagina">
+            <span class="icono-pie-pagina">📞</span>
             <div>
-              <p class="footer-label">Línea de servicio</p>
-              <p class="footer-value">+57 314 6904576</p>
+              <p class="etiqueta-pie-pagina">Línea de servicio</p>
+              <p class="valor-pie-pagina">+57 314 6904576</p>
             </div>
           </div>
-          <div class="footer-contact-item">
-            <span class="footer-icon">📧</span>
+          <div class="item-contacto-pie-pagina">
+            <span class="icono-pie-pagina">📧</span>
             <div>
-              <p class="footer-label">Correo electrónico</p>
-              <p class="footer-value">AbueClick@gmail.com</p>
+              <p class="etiqueta-pie-pagina">Correo electrónico</p>
+              <p class="valor-pie-pagina">AbueClick@gmail.com</p>
             </div>
           </div>
-          <div class="footer-contact-item">
-            <span class="footer-icon">💬</span>
+          <div class="item-contacto-pie-pagina">
+            <span class="icono-pie-pagina">💬</span>
             <div>
-              <p class="footer-label">WhatsApp</p>
-              <p class="footer-value">+57 314 6904576</p>
+              <p class="etiqueta-pie-pagina">WhatsApp</p>
+              <p class="valor-pie-pagina">+57 314 6904576</p>
             </div>
           </div>
         </div>
 
-        <div class="footer-column">
-          <h3 class="footer-title">INFORMACIÓN</h3>
-          <h4 class="footer-subtitle">POLÍTICAS</h4>
-          <ul class="footer-links">
+        <div class="columna-pie-pagina">
+          <h3 class="titulo-pie-pagina">INFORMACIÓN</h3>
+          <h4 class="subtitulo-pie-pagina">POLÍTICAS</h4>
+          <ul class="enlaces-pie-pagina">
             <li><a href="#">Política de privacidad</a></li>
             <li><a href="#">Términos y condiciones</a></li>
             <li><a href="#">Política de cookies</a></li>
           </ul>
-          <h4 class="footer-subtitle" style="margin-top: 20px;">ENLACES</h4>
-          <ul class="footer-links">
+          <h4 class="subtitulo-pie-pagina" style="margin-top: 20px;">ENLACES</h4>
+          <ul class="enlaces-pie-pagina">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
             <li><a href="login.html">Iniciar sesión</a></li>
@@ -157,26 +149,30 @@
           </ul>
         </div>
 
-        <div class="footer-column">
-          <h3 class="footer-title">REDES SOCIALES</h3>
-          <div class="footer-social">
-            <a href="#" class="social-link">Facebook</a>
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">Twitter</a>
-            <a href="#" class="social-link">LinkedIn</a>
+        <div class="columna-pie-pagina">
+          <h3 class="titulo-pie-pagina">REDES SOCIALES</h3>
+          <div class="redes-pie-pagina">
+            <a href="#" class="enlace-red-social">Facebook</a>
+            <a href="#" class="enlace-red-social">Instagram</a>
+            <a href="#" class="enlace-red-social">Twitter</a>
+            <a href="#" class="enlace-red-social">LinkedIn</a>
           </div>
-          <div class="footer-update">
-            <p class="footer-label">Fecha última actualización</p>
-            <p class="footer-value">2025</p>
+          <div class="actualizacion-pie-pagina">
+            <p class="etiqueta-pie-pagina">Fecha última actualización</p>
+            <p class="valor-pie-pagina">2025</p>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
+      <div class="fondo-pie-pagina">
         <p>© 2025 AbueClick. Todos los derechos reservados.</p>
       </div>
     </footer>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-database.js"></script>
   <script src="js/database.js"></script>
   <script src="js/autenticacion.js"></script>
   <script src="js/servicio.js"></script>
@@ -206,16 +202,14 @@
       return edad;
     }
 
-    // Función para mostrar acompañantes en la página principal
     function mostrarAcompanantesEnInicio() {
-      const container = document.getElementById('acompanantesContainer');
-      if (!container) return;
+      const contenedor = document.getElementById('contenedorAcompanantes');
+      if (!contenedor) return;
 
-      // Obtener 5 acompañantes aleatorios (o los que haya)
       const acompanantes = obtenerAcompanantesAleatorios(5);
       
       if (acompanantes.length === 0) {
-        container.innerHTML = `
+        contenedor.innerHTML = `
           <div class="sin-acompanantes">
             <p>Por el momento no hay acompañantes disponibles. Vuelve pronto para conocer nuestros profesionales.</p>
           </div>
@@ -223,43 +217,40 @@
         return;
       }
 
-      container.innerHTML = '';
+      contenedor.innerHTML = '';
       
       acompanantes.forEach(acompanante => {
-        const card = document.createElement('div');
-        card.className = 'profile-card';
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta-perfil';
         
-        // Obtener usuario completo para más información
         const usuarios = obtenerUsuarios();
         const usuario = usuarios.find(u => u.email === acompanante.email);
         
-        // Determinar edad si está disponible
         const edad = usuario && usuario.fechaNacimiento 
           ? calcularEdad(usuario.fechaNacimiento) 
           : 'No especificada';
         
-        // Avatar o imagen por defecto
         const avatar = usuario && usuario.avatar 
           ? usuario.avatar 
           : 'resources/perfiles/mujer.png';
         
-        card.innerHTML = `
-          <img src="${avatar}" alt="${acompanante.nombre}" class="profile-photo" onerror="this.src='resources/perfiles/mujer.png'">
-          <div class="profile-info">
-            <h2 class="profile-name">${acompanante.nombre}</h2>
-            <div class="profile-meta">
+        tarjeta.innerHTML = `
+          <img src="${avatar}" alt="${acompanante.nombre}" class="foto-perfil" onerror="this.src='resources/perfiles/mujer.png'">
+          <div class="info-perfil">
+            <h2 class="nombre-perfil">${acompanante.nombre}</h2>
+            <div class="meta-perfil">
               <span>Edad: ${edad}</span> · 
               <span>Experiencia: ${acompanante.experiencia || 'Sin especificar'}</span>
             </div>
-            <p class="profile-desc">${acompanante.descripcion || 'Acompañante profesional disponible para ayudarle.'}</p>
-            <p class="profile-spec"><strong>Especialidad:</strong> ${acompanante.especialidad}</p>
-            ${acompanante.ciudad ? `<p class="profile-spec"><strong>Ciudad:</strong> ${acompanante.ciudad.charAt(0).toUpperCase() + acompanante.ciudad.slice(1)}</p>` : ''}
-            ${acompanante.telefono ? `<p class="profile-spec"><strong>Teléfono:</strong> ${acompanante.telefono}</p>` : ''}
-            <button class="contact-btn" onclick="window.location.href='servicio-cita-medica.html'">Ver Perfil</button>
+            <p class="descripcion-perfil">${acompanante.descripcion || 'Acompañante profesional disponible para ayudarle.'}</p>
+            <p class="especificacion-perfil"><strong>Especialidad:</strong> ${acompanante.especialidad}</p>
+            ${acompanante.ciudad ? `<p class="especificacion-perfil"><strong>Ciudad:</strong> ${acompanante.ciudad.charAt(0).toUpperCase() + acompanante.ciudad.slice(1)}</p>` : ''}
+            ${acompanante.telefono ? `<p class="especificacion-perfil"><strong>Teléfono:</strong> ${acompanante.telefono}</p>` : ''}
+            <button class="boton-contacto" onclick="window.location.href='servicio-cita-medica.html'">Ver Perfil</button>
           </div>
         `;
         
-        container.appendChild(card);
+        contenedor.appendChild(tarjeta);
       });
     }
 
@@ -279,53 +270,50 @@
         if (navMisCitas) navMisCitas.style.display = 'list-item';
         if (navMisCitasMobile) navMisCitasMobile.style.display = 'list-item';
       } else {
-        // Si no hay sesión, mostrar opciones para iniciar sesión en la navegación
-        const navRight = document.querySelector('.nav-right');
-        if (navRight) {
-          // Ocultar elementos que requieren sesión
-          const notificationsLink = document.getElementById('notificationsLink');
-          const chatBtn = document.querySelector('.chat-btn');
-          const profileBtn = document.querySelector('.profile-btn');
+        const navDerecha = document.querySelector('.nav-derecha');
+        if (navDerecha) {
+          const enlaceNotificaciones = document.getElementById('enlaceNotificaciones');
+          const botonChat = document.querySelector('.boton-chat');
+          const botonPerfil = document.querySelector('.boton-perfil');
           
-          if (notificationsLink) notificationsLink.style.display = 'none';
-          if (chatBtn) chatBtn.style.display = 'none';
-          if (profileBtn) {
-            profileBtn.href = 'login.html';
-            profileBtn.innerHTML = '<span class="avatar-circle" style="padding: 8px 16px; font-size: 14px;">Iniciar Sesión</span>';
-            profileBtn.title = 'Iniciar Sesión';
+          if (enlaceNotificaciones) enlaceNotificaciones.style.display = 'none';
+          if (botonChat) botonChat.style.display = 'none';
+          if (botonPerfil) {
+            botonPerfil.href = 'login.html';
+            botonPerfil.innerHTML = '<span class="circulo-avatar" style="padding: 8px 16px; font-size: 14px;">Iniciar Sesión</span>';
+            botonPerfil.title = 'Iniciar Sesión';
           }
           
-          // Agregar botón de iniciar sesión si no existe
-          const existingLoginBtn = document.querySelector('.btn-login-nav');
-          if (!existingLoginBtn) {
-            const loginBtn = document.createElement('a');
-            loginBtn.href = 'login.html';
-            loginBtn.className = 'btn-login-nav';
-            loginBtn.textContent = 'Iniciar Sesión';
-            loginBtn.style.cssText = 'padding: 10px 20px; background: #667eea; color: white; border-radius: 6px; text-decoration: none; font-family: Poppins, sans-serif; margin-left: 10px; font-weight: 500; transition: all 0.3s;';
-            loginBtn.onmouseover = function() { this.style.background = '#5568d3'; };
-            loginBtn.onmouseout = function() { this.style.background = '#667eea'; };
-            navRight.insertBefore(loginBtn, navRight.firstChild);
+          const botonLoginExistente = document.querySelector('.boton-login-nav');
+          if (!botonLoginExistente) {
+            const botonLogin = document.createElement('a');
+            botonLogin.href = 'login.html';
+            botonLogin.className = 'boton-login-nav';
+            botonLogin.textContent = 'Iniciar Sesión';
+            botonLogin.style.cssText = 'padding: 10px 20px; background: #667eea; color: white; border-radius: 6px; text-decoration: none; font-family: Poppins, sans-serif; margin-left: 10px; font-weight: 500; transition: all 0.3s;';
+            botonLogin.onmouseover = function() { this.style.background = '#5568d3'; };
+            botonLogin.onmouseout = function() { this.style.background = '#667eea'; };
+            navDerecha.insertBefore(botonLogin, navDerecha.firstChild);
           }
         }
       }
 
-      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (mobileMenuToggle && mobileMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-          mobileMenu.classList.toggle('active');
-          if (mobileMenu.classList.contains('active')) {
-            mobileMenuToggle.textContent = '✕';
+      const botonMenuMovil = document.getElementById('botonMenuMovil');
+      const menuMovil = document.getElementById('menuMovil');
+      if (botonMenuMovil && menuMovil) {
+        botonMenuMovil.addEventListener('click', function() {
+          menuMovil.classList.toggle('activo');
+          if (menuMovil.classList.contains('activo')) {
+            botonMenuMovil.textContent = '✕';
           } else {
-            mobileMenuToggle.textContent = '☰';
+            botonMenuMovil.textContent = '☰';
           }
         });
 
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-          link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.textContent = '☰';
+        document.querySelectorAll('.menu-movil a').forEach(enlace => {
+          enlace.addEventListener('click', function() {
+            menuMovil.classList.remove('activo');
+            botonMenuMovil.textContent = '☰';
           });
         });
       }

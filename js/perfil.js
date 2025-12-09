@@ -14,33 +14,29 @@ function cargarPerfil() {
 
   if (usuario) {
     // Llenar el formulario con los datos del usuario
-    document.getElementById('editNombre').value = usuario.nombre || '';
-    document.getElementById('editApellido').value = usuario.apellido || '';
-    document.getElementById('editEmail').value = usuario.email || '';
-    document.getElementById('editTelefono').value = usuario.telefono || '';
-    document.getElementById('editFecha').value = usuario.fechaNacimiento || '';
-    document.getElementById('editCiudad').value = usuario.ciudad || '';
-    document.getElementById('editDisponibilidad').value = usuario.disponibilidad || '';
-    document.getElementById('editInfoAdicional').value = usuario.informacionAdicional || '';
+    document.getElementById('editarNombre').value = usuario.nombre || '';
+    document.getElementById('editarApellido').value = usuario.apellido || '';
+    document.getElementById('editarEmail').value = usuario.email || '';
+    document.getElementById('editarTelefono').value = usuario.telefono || '';
+    document.getElementById('editarFecha').value = usuario.fechaNacimiento || '';
+    document.getElementById('editarCiudad').value = usuario.ciudad || '';
+    document.getElementById('editarDisponibilidad').value = usuario.disponibilidad || '';
+    document.getElementById('editarInfoAdicional').value = usuario.informacionAdicional || '';
 
-    // Mostrar nombre en el header
-    document.getElementById('profileName').textContent = `${usuario.nombre} ${usuario.apellido}`;
-    document.getElementById('profileEmail').textContent = usuario.email;
+    document.getElementById('nombrePerfil').textContent = `${usuario.nombre} ${usuario.apellido}`;
+    document.getElementById('correoPerfil').textContent = usuario.email;
 
-    // Mostrar tipo de usuario
     const tipoUsuario = usuario.tipoUsuario === 'acompanante' ? 'Acompañante' : 'Adulto Mayor';
-    document.getElementById('profileType').textContent = tipoUsuario;
+    document.getElementById('tipoPerfil').textContent = tipoUsuario;
 
-    // Mostrar iniciales en el avatar
     const iniciales = (usuario.nombre?.charAt(0) || '') + (usuario.apellido?.charAt(0) || '');
-    document.getElementById('avatarInitials').textContent = iniciales.toUpperCase() || 'AC';
-    document.getElementById('userAvatarNav').textContent = iniciales.toUpperCase() || 'AC';
+    document.getElementById('inicialesAvatar').textContent = iniciales.toUpperCase() || 'AC';
+    document.getElementById('avatarUsuarioNav').textContent = iniciales.toUpperCase() || 'AC';
 
-    // Si es acompañante, mostrar campos adicionales
     if (usuario.tipoUsuario === 'acompanante') {
-      document.getElementById('acompananteFields').style.display = 'block';
-      document.getElementById('editExperiencia').value = usuario.experiencia || '';
-      document.getElementById('editNivelEducacion').value = usuario.nivelEducacion || '';
+      document.getElementById('camposAcompanante').style.display = 'block';
+      document.getElementById('editarExperiencia').value = usuario.experiencia || '';
+      document.getElementById('editarNivelEducacion').value = usuario.nivelEducacion || '';
     }
   }
 }
@@ -76,9 +72,9 @@ function guardarPerfil(datosActualizados) {
 
 // Manejar cambio de avatar
 function manejarCambioAvatar() {
-  const input = document.getElementById('avatarInput');
-  const avatarLarge = document.getElementById('avatarLarge');
-  const avatarInitials = document.getElementById('avatarInitials');
+  const input = document.getElementById('entradaAvatar');
+  const avatarGrande = document.getElementById('avatarGrande');
+  const inicialesAvatar = document.getElementById('inicialesAvatar');
 
   input.addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -93,10 +89,9 @@ function manejarCambioAvatar() {
         img.style.borderRadius = '50%';
         img.style.objectFit = 'cover';
 
-        // Reemplazar iniciales con imagen
-        avatarInitials.style.display = 'none';
-        avatarLarge.innerHTML = '';
-        avatarLarge.appendChild(img);
+        inicialesAvatar.style.display = 'none';
+        avatarGrande.innerHTML = '';
+        avatarGrande.appendChild(img);
 
         // Guardar imagen en localStorage (como base64)
         const usuarioActual = verificarSesion();
@@ -128,10 +123,10 @@ function cargarAvatar() {
   const usuario = usuarios.find(u => u.email === usuarioActual.email);
 
   if (usuario && usuario.avatar) {
-    const avatarLarge = document.getElementById('avatarLarge');
-    const avatarInitials = document.getElementById('avatarInitials');
+    const avatarGrande = document.getElementById('avatarGrande');
+    const inicialesAvatar = document.getElementById('inicialesAvatar');
     
-    if (avatarLarge && avatarInitials) {
+    if (avatarGrande && inicialesAvatar) {
       const img = document.createElement('img');
       img.src = usuario.avatar;
       img.style.width = '100%';
@@ -139,9 +134,9 @@ function cargarAvatar() {
       img.style.borderRadius = '50%';
       img.style.objectFit = 'cover';
 
-      avatarInitials.style.display = 'none';
-      avatarLarge.innerHTML = '';
-      avatarLarge.appendChild(img);
+      inicialesAvatar.style.display = 'none';
+      avatarGrande.innerHTML = '';
+      avatarGrande.appendChild(img);
     }
   }
   
@@ -156,11 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
   manejarCambioAvatar();
 
   // Botón para cambiar avatar
-  document.getElementById('editAvatarBtn').addEventListener('click', function() {
-    document.getElementById('avatarInput').click();
+  document.getElementById('botonEditarAvatar').addEventListener('click', function() {
+    document.getElementById('entradaAvatar').click();
   });
 
-  document.getElementById('logoutBtn').addEventListener('click', function() {
+  document.getElementById('botonCerrarSesion').addEventListener('click', function() {
     if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
       cerrarSesion();
       alert('Sesión cerrada exitosamente');
@@ -168,29 +163,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  document.getElementById('deleteAccountBtn').addEventListener('click', function() {
+  document.getElementById('botonEliminarCuenta').addEventListener('click', function() {
     eliminarCuenta();
   });
 
-  // Manejar envío del formulario
-  document.getElementById('profileForm').addEventListener('submit', function(e) {
+  document.getElementById('formularioPerfil').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const datosActualizados = {
-      nombre: document.getElementById('editNombre').value,
-      apellido: document.getElementById('editApellido').value,
-      email: document.getElementById('editEmail').value,
-      telefono: document.getElementById('editTelefono').value,
-      fechaNacimiento: document.getElementById('editFecha').value,
-      ciudad: document.getElementById('editCiudad').value,
-      disponibilidad: document.getElementById('editDisponibilidad').value,
-      informacionAdicional: document.getElementById('editInfoAdicional').value
+      nombre: document.getElementById('editarNombre').value,
+      apellido: document.getElementById('editarApellido').value,
+      email: document.getElementById('editarEmail').value,
+      telefono: document.getElementById('editarTelefono').value,
+      fechaNacimiento: document.getElementById('editarFecha').value,
+      ciudad: document.getElementById('editarCiudad').value,
+      disponibilidad: document.getElementById('editarDisponibilidad').value,
+      informacionAdicional: document.getElementById('editarInfoAdicional').value
     };
 
-    // Si es acompañante, agregar campos adicionales
-    if (document.getElementById('acompananteFields').style.display !== 'none') {
-      datosActualizados.experiencia = document.getElementById('editExperiencia').value;
-      datosActualizados.nivelEducacion = document.getElementById('editNivelEducacion').value;
+    if (document.getElementById('camposAcompanante').style.display !== 'none') {
+      datosActualizados.experiencia = document.getElementById('editarExperiencia').value;
+      datosActualizados.nivelEducacion = document.getElementById('editarNivelEducacion').value;
     }
 
     const resultado = guardarPerfil(datosActualizados);

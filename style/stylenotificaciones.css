@@ -92,7 +92,7 @@
   font-weight: 600;
 }
 
-.btn-marcar-leida {
+.boton-marcar-leida {
   padding: 8px 16px;
   background: #52a6c4;
   color: white;
@@ -105,7 +105,7 @@
   transition: all 0.3s ease;
 }
 
-.btn-marcar-leida:hover {
+.boton-marcar-leida:hover {
   background: #3d8ba8;
   transform: translateY(-1px);
 }

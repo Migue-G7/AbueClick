@@ -100,24 +100,24 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.busqueda-form {
+.formulario-busqueda-acompanante {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.form-row {
+.fila-formulario {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.form-group {
+.grupo-formulario {
   display: flex;
   flex-direction: column;
 }
 
-.form-group label {
+.grupo-formulario label {
   font-size: 18px;
   font-weight: 600;
   color: #222;
@@ -125,9 +125,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.form-group select,
-.form-group input,
-.form-group textarea {
+.grupo-formulario select,
+.grupo-formulario input,
+.grupo-formulario textarea {
   padding: 14px 16px;
   border: 2px solid #52a6c4;
   border-radius: 8px;
@@ -138,15 +138,15 @@
   transition: border-color 0.3s ease;
 }
 
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
+.grupo-formulario select:focus,
+.grupo-formulario input:focus,
+.grupo-formulario textarea:focus {
   outline: none;
   border-color: #faba4d;
   box-shadow: 0 0 0 3px rgba(250, 186, 77, 0.2);
 }
 
-.btn-buscar {
+.boton-buscar {
   padding: 16px 40px;
   background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
   color: white;
@@ -160,7 +160,7 @@
   align-self: flex-start;
 }
 
-.btn-buscar:hover {
+.boton-buscar:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(82, 166, 196, 0.3);
 }
@@ -180,13 +180,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.acompanantes-grid {
+.cuadricula-acompanantes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 25px;
 }
 
-.acompanante-card {
+.tarjeta-acompanante {
   background: white;
   border: 2px solid #52a6c4;
   border-radius: 12px;
@@ -196,18 +196,18 @@
   cursor: pointer;
 }
 
-.acompanante-card:hover {
+.tarjeta-acompanante:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(82, 166, 196, 0.25);
   border-color: #faba4d;
 }
 
-.acompanante-card.selected {
+.tarjeta-acompanante.seleccionada {
   border-color: #faba4d;
   background: linear-gradient(135deg, #fff980 0%, #ffffff 100%);
 }
 
-.acompanante-nombre {
+.nombre-acompanante {
   font-size: 22px;
   font-weight: 700;
   color: #222;
@@ -215,14 +215,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.acompanante-info {
+.info-acompanante {
   font-size: 16px;
   color: #666;
   margin-bottom: 8px;
   font-family: 'Poppins', sans-serif;
 }
 
-.acompanante-especialidad {
+.especialidad-acompanante {
   font-size: 18px;
   font-weight: 600;
   color: #52a6c4;
@@ -247,13 +247,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.agendar-form {
+.formulario-agendar {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.btn-agendar {
+.boton-agendar {
   padding: 16px 40px;
   background: linear-gradient(135deg, #faba4d 0%, #ff9800 100%);
   color: white;
@@ -267,7 +267,7 @@
   align-self: flex-start;
 }
 
-.btn-agendar:hover {
+.boton-agendar:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(250, 186, 77, 0.3);
 }
@@ -338,8 +338,8 @@
   flex-wrap: wrap;
 }
 
-.btn-ver-notificaciones,
-.btn-editar-perfil {
+.boton-ver-notificaciones,
+.boton-editar-perfil {
   padding: 16px 30px;
   border-radius: 8px;
   font-size: 18px;
@@ -350,23 +350,23 @@
   display: inline-block;
 }
 
-.btn-ver-notificaciones {
+.boton-ver-notificaciones {
   background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
   color: white;
 }
 
-.btn-ver-notificaciones:hover {
+.boton-ver-notificaciones:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(82, 166, 196, 0.3);
 }
 
-.btn-editar-perfil {
+.boton-editar-perfil {
   background: white;
   color: #52a6c4;
   border: 2px solid #52a6c4;
 }
 
-.btn-editar-perfil:hover {
+.boton-editar-perfil:hover {
   background: #52a6c4;
   color: white;
   transform: translateY(-2px);
@@ -385,7 +385,7 @@
     padding: 25px;
   }
 
-  .form-row {
+  .fila-formulario {
     grid-template-columns: 1fr;
   }
 
@@ -394,7 +394,7 @@
     text-align: center;
   }
 
-  .acompanantes-grid {
+  .cuadricula-acompanantes {
     grid-template-columns: 1fr;
   }
 
@@ -402,8 +402,8 @@
     flex-direction: column;
   }
 
-  .btn-ver-notificaciones,
-  .btn-editar-perfil {
+  .boton-ver-notificaciones,
+  .boton-editar-perfil {
     width: 100%;
     text-align: center;
   }

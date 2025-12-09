@@ -16,60 +16,59 @@
     <link rel="stylesheet" href="style/styleregistro.css">
 </head>
 <body>
-  <div class="site">
-    <header id="navbar">
-      <div class="nav-center">
-        <div class="brand">
-          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="nav-logo">
+  <div class="sitio">
+    <header id="barra-navegacion">
+      <div class="nav-centro">
+        <div class="marca">
+          <img src="resources/img/Imagotipo.png" alt="AbueClick" class="logo-navegacion">
         </div>
         <nav>
-          <ul class="nav-menu">
+          <ul class="menu-navegacion">
             <li><a href="#">Inicio</a></li>
             <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
-            <li><a href="#footer">Contacto</a></li>
+            <li><a href="#pie-pagina">Contacto</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <div class="container">
-        <!-- Sección de Registro de Usuarios -->
-        <div class="form-section">
+    <div class="contenedor">
+        <div class="seccion-formulario">
             <h2>Registro de Usuarios</h2>
-            <form id="registroForm">
-                <div class="form-group">
+            <form id="formularioRegistro">
+                <div class="grupo-formulario">
                     <label for="nombre">Nombre*</label>
                     <input type="text" id="nombre" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="apellido">Apellido*</label>
                     <input type="text" id="apellido" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="email">Correo Electrónico*</label>
                     <input type="email" id="email" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="password">Contraseña*</label>
                     <input type="password" id="password" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="telefono">Teléfono*</label>
                     <input type="tel" id="telefono" required>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="fecha">Fecha de Nacimiento*</label>
-                    <div class="date-input">
+                    <div class="entrada-fecha">
                         <input type="date" id="fecha" required>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="ciudad">Ciudad*</label>
                     <select id="ciudad" required>
                         <option value="">Seleccionar ciudad</option>
@@ -80,7 +79,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="disponibilidad">Disponibilidad Horaria*</label>
                     <select id="disponibilidad" required>
                         <option value="">Seleccionar horario</option>
@@ -92,23 +91,21 @@
             </form>
         </div>
 
-        <!-- Sección de Servicios -->
-        <div class="service-section">
-            <div class="checkbox-group">
-                <h3 class="section-title">Seleccione su Tipo de Usuario*</h3>
-                <div class="checkbox-item">
+        <div class="seccion-servicios">
+            <div class="grupo-checkbox">
+                <h3 class="titulo-seccion">Seleccione su Tipo de Usuario*</h3>
+                <div class="item-checkbox">
                     <input type="radio" id="compania" name="tipoUsuario" value="acompanante" checked>
                     <label for="compania">Acompañante</label>
                 </div>
-                <div class="checkbox-item">
+                <div class="item-checkbox">
                     <input type="radio" id="asistencia" name="tipoUsuario" value="adultoMayor">
                     <label for="asistencia">Adulto Mayor</label>
                 </div>
             </div>
 
-            <!-- Campos condicionales para Acompañante -->
             <div id="camposAcompanante" class="campos-condicionales">
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="experiencia">Experiencia*</label>
                     <select id="experiencia" required>
                         <option value="">Seleccionar experiencia</option>
@@ -119,7 +116,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="grupo-formulario">
                     <label for="nivelEducacion">Nivel de Educación*</label>
                         <select id="nivelEducacion" required>
                         <option value="">Seleccionar nivel</option>
@@ -132,12 +129,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <h3 class="section-title">Información Adicional</h3>
+            <div class="grupo-formulario">
+                <h3 class="titulo-seccion">Información Adicional</h3>
                 <textarea placeholder="Escribe información adicional aquí..."></textarea>
             </div>
 
-            <button type="submit" class="submit-btn" form="registroForm">Registrarse</button>
+            <button type="submit" class="boton-enviar" form="formularioRegistro">Registrarse</button>
         </div>
     </div>
   </div>
@@ -146,8 +143,7 @@
   <script src="js/autenticacion.js"></script>
   <script src="js/registro.js"></script>
   <script>
-    // Manejar el envío del formulario de registro
-    document.getElementById('registroForm').addEventListener('submit', function(e) {
+    document.getElementById('formularioRegistro').addEventListener('submit', function(e) {
       e.preventDefault();
       
       // Obtener todos los datos del formulario
@@ -180,45 +176,44 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-  <!-- FOOTER: información de pie de página, logo y enlaces -->
-  <footer id="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3 class="footer-title">ABUECLICK</h3>
-        <h4 class="footer-subtitle">CONTÁCTANOS</h4>
-        <div class="footer-contact-item">
-          <span class="footer-icon">📞</span>
+  <footer id="pie-pagina">
+    <div class="contenedor-pie-pagina">
+      <div class="columna-pie-pagina">
+        <h3 class="titulo-pie-pagina">ABUECLICK</h3>
+        <h4 class="subtitulo-pie-pagina">CONTÁCTANOS</h4>
+        <div class="item-contacto-pie-pagina">
+          <span class="icono-pie-pagina">📞</span>
           <div>
-            <p class="footer-label">Línea de servicio</p>
-            <p class="footer-value">+57 314 6904576</p>
+            <p class="etiqueta-pie-pagina">Línea de servicio</p>
+            <p class="valor-pie-pagina">+57 314 6904576</p>
           </div>
         </div>
-        <div class="footer-contact-item">
-          <span class="footer-icon">📧</span>
+        <div class="item-contacto-pie-pagina">
+          <span class="icono-pie-pagina">📧</span>
           <div>
-            <p class="footer-label">Correo electrónico</p>
-            <p class="footer-value">AbueClick@gmail.com</p>
+            <p class="etiqueta-pie-pagina">Correo electrónico</p>
+            <p class="valor-pie-pagina">AbueClick@gmail.com</p>
           </div>
         </div>
-        <div class="footer-contact-item">
-          <span class="footer-icon">💬</span>
+        <div class="item-contacto-pie-pagina">
+          <span class="icono-pie-pagina">💬</span>
           <div>
-            <p class="footer-label">WhatsApp</p>
-            <p class="footer-value">+57 314 6904576</p>
+            <p class="etiqueta-pie-pagina">WhatsApp</p>
+            <p class="valor-pie-pagina">+57 314 6904576</p>
           </div>
         </div>
       </div>
 
-      <div class="footer-column">
-        <h3 class="footer-title">INFORMACIÓN</h3>
-        <h4 class="footer-subtitle">POLÍTICAS</h4>
-        <ul class="footer-links">
+      <div class="columna-pie-pagina">
+        <h3 class="titulo-pie-pagina">INFORMACIÓN</h3>
+        <h4 class="subtitulo-pie-pagina">POLÍTICAS</h4>
+        <ul class="enlaces-pie-pagina">
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de cookies</a></li>
         </ul>
-        <h4 class="footer-subtitle" style="margin-top: 20px;">ENLACES</h4>
-        <ul class="footer-links">
+        <h4 class="subtitulo-pie-pagina" style="margin-top: 20px;">ENLACES</h4>
+        <ul class="enlaces-pie-pagina">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
           <li><a href="login.html">Iniciar sesión</a></li>
@@ -226,21 +221,21 @@
         </ul>
       </div>
 
-      <div class="footer-column">
-        <h3 class="footer-title">REDES SOCIALES</h3>
-        <div class="footer-social">
-          <a href="#" class="social-link">Facebook</a>
-          <a href="#" class="social-link">Instagram</a>
-          <a href="#" class="social-link">Twitter</a>
-          <a href="#" class="social-link">LinkedIn</a>
+      <div class="columna-pie-pagina">
+        <h3 class="titulo-pie-pagina">REDES SOCIALES</h3>
+        <div class="redes-pie-pagina">
+          <a href="#" class="enlace-red-social">Facebook</a>
+          <a href="#" class="enlace-red-social">Instagram</a>
+          <a href="#" class="enlace-red-social">Twitter</a>
+          <a href="#" class="enlace-red-social">LinkedIn</a>
         </div>
-        <div class="footer-update">
-          <p class="footer-label">Fecha última actualización</p>
-          <p class="footer-value">2025</p>
+        <div class="actualizacion-pie-pagina">
+          <p class="etiqueta-pie-pagina">Fecha última actualización</p>
+          <p class="valor-pie-pagina">2025</p>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="fondo-pie-pagina">
       <p>© 2025 AbueClick. Todos los derechos reservados.</p>
     </div>
   </footer>

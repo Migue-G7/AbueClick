@@ -249,17 +249,15 @@ function abrirConversacion(conversacionId) {
   document.getElementById('chatVacio').style.display = 'none';
   document.getElementById('chatActivo').style.display = 'flex';
 
-  // Actualizar header del chat
   const otroParticipante = conversacion.otroParticipante;
-  document.getElementById('chatNombre').textContent = otroParticipante.nombre;
-  document.getElementById('chatServicio').textContent = conversacion.servicio;
+  document.getElementById('nombreChat').textContent = otroParticipante.nombre;
+  document.getElementById('servicioChat').textContent = conversacion.servicio;
 
-  // Actualizar avatar
-  const chatAvatar = document.getElementById('chatAvatar');
+  const avatarChat = document.getElementById('avatarChat');
   if (otroParticipante.avatar) {
-    chatAvatar.innerHTML = `<img src="${otroParticipante.avatar}" alt="${otroParticipante.nombre}">`;
+    avatarChat.innerHTML = `<img src="${otroParticipante.avatar}" alt="${otroParticipante.nombre}">`;
   } else {
-    chatAvatar.textContent = otroParticipante.iniciales;
+    avatarChat.textContent = otroParticipante.iniciales;
   }
 
   // Cargar mensajes
@@ -282,7 +280,7 @@ function abrirConversacion(conversacionId) {
 // Cargar mensajes en el chat
 function cargarMensajes(conversacionId) {
   const mensajes = obtenerMensajes(conversacionId);
-  const mensajesDiv = document.getElementById('chatMensajes');
+  const mensajesDiv = document.getElementById('mensajesChat');
   const usuarioActual = verificarSesion();
 
   if (!mensajesDiv || !usuarioActual) return;
@@ -328,7 +326,7 @@ function manejarEnvioMensaje(e) {
   
   if (!conversacionActual) return;
 
-  const input = document.getElementById('inputMensaje');
+  const input = document.getElementById('entradaMensaje');
   const texto = input.value.trim();
 
   if (!texto) return;
@@ -348,9 +346,9 @@ function manejarEnvioMensaje(e) {
 
 // Inicializar eventos
 document.addEventListener('DOMContentLoaded', function() {
-  const formEnviarMensaje = document.getElementById('formEnviarMensaje');
-  if (formEnviarMensaje) {
-    formEnviarMensaje.addEventListener('submit', manejarEnvioMensaje);
+  const formularioEnviarMensaje = document.getElementById('formularioEnviarMensaje');
+  if (formularioEnviarMensaje) {
+    formularioEnviarMensaje.addEventListener('submit', manejarEnvioMensaje);
   }
 
   // Verificar si hay una conversación para abrir automáticamente (desde Mis Citas)
