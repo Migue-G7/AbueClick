@@ -90,6 +90,8 @@
   border-radius: 12px;
   padding: 40px;
   box-shadow: 0 4px 12px rgba(82, 166, 196, 0.15);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .busqueda-acompanante h2 {
@@ -101,20 +103,26 @@
 }
 
 .formulario-busqueda-acompanante {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .fila-formulario {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .grupo-formulario {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .grupo-formulario label {
@@ -123,41 +131,49 @@
   color: #222;
   margin-bottom: 8px;
   font-family: 'Poppins', sans-serif;
+  display: block;
 }
 
 .grupo-formulario select,
 .grupo-formulario input,
 .grupo-formulario textarea {
-  padding: 14px 16px;
-  border: 2px solid #52a6c4;
-  border-radius: 8px;
-  font-size: 18px;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  background: white;
+  padding: 14px 16px !important;
+  border: 2px solid #52a6c4 !important;
+  border-radius: 8px !important;
+  font-size: 18px !important;
+  font-family: 'Poppins', sans-serif !important;
+  color: #333 !important;
+  background: white !important;
   transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: auto;
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
 }
 
 .grupo-formulario select:focus,
 .grupo-formulario input:focus,
 .grupo-formulario textarea:focus {
-  outline: none;
-  border-color: #faba4d;
-  box-shadow: 0 0 0 3px rgba(250, 186, 77, 0.2);
+  outline: none !important;
+  border-color: #faba4d !important;
+  box-shadow: 0 0 0 3px rgba(250, 186, 77, 0.2) !important;
 }
 
 .boton-buscar {
-  padding: 16px 40px;
-  background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  padding: 16px 40px !important;
+  background: linear-gradient(135deg, #52a6c4 0%, #3d8ba8 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins', sans-serif !important;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   align-self: flex-start;
+  width: auto;
+  box-sizing: border-box;
 }
 
 .boton-buscar:hover {

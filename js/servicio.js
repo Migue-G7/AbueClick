@@ -254,10 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const filtros = {
         ciudad: document.getElementById('ciudad').value,
         experiencia: document.getElementById('experiencia').value,
-        especialidad: document.getElementById('especialidad')?.value || '',
-        tipoEvento: document.getElementById('tipoEvento')?.value || '',
-        tipoCompras: document.getElementById('tipoCompras')?.value || '',
-        tipoTramite: document.getElementById('tipoTramite')?.value || '',
         disponibilidad: document.getElementById('disponibilidad').value
       };
 
